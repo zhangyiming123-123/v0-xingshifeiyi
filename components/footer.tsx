@@ -3,200 +3,280 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const footerLinks = [
+const footerCols = [
   {
     title: '文化板块',
-    links: ['醒狮简史', '技法解析', '非遗故事'],
+    links: [
+      { label: '醒狮简史', href: '#culture' },
+      { label: '技法解析', href: '#culture' },
+      { label: '非遗故事', href: '#culture' },
+    ],
   },
   {
     title: '影像资料',
-    links: ['原创短片', '演出记录', '工艺纪录', '活动现场'],
+    links: [
+      { label: '原创短片', href: '#film' },
+      { label: '工艺纪录', href: '#film' },
+    ],
   },
   {
     title: '互动参与',
-    links: ['醒狮文创', '志愿者招募', '捐助支持'],
+    links: [
+      { label: '醒狮文创', href: '#products' },
+    ],
   },
 ]
 
-const contactItems = [
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-        <circle cx="12" cy="10" r="3"/>
-      </svg>
-    ),
-    label: '广东省广州市越秀区中山四路123号',
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
-    ),
-    label: 'contact@lingnan-lion.cn',
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.32-1.32a2 2 0 0 1 2.11-.45c.91.32 1.87.51 2.81.7A2 2 0 0 1 22 16.92z"/>
-      </svg>
-    ),
-    label: '020-8888-9999',
-  },
-]
+// 祥云装饰 SVG
+function CloudDeco({ opacity = 0.12 }: { opacity?: number }) {
+  return (
+    <svg viewBox="0 0 120 30" fill="none" style={{ opacity }}>
+      <path
+        d="M10 22 Q10 14 18 14 Q16 6 26 8 Q28 2 36 4 Q40 0 46 4 Q54 0 60 6 Q68 2 74 6 Q80 0 88 4 Q96 2 100 8 Q108 6 110 14 Q118 14 118 22"
+        stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"
+      />
+    </svg>
+  )
+}
 
 export default function Footer() {
   const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   return (
-    <footer
-      ref={ref}
-      id="footer"
-      style={{ background: '#3D2B1F' }}
-    >
-      {/* 顶部金线 */}
-      <div
-        className="h-px w-full"
-        style={{ background: 'linear-gradient(90deg, transparent, #C9A96E 30%, #C9A96E 70%, transparent)' }}
-      />
+    <footer ref={ref} id="footer" style={{ background: '#2A1C12', position: 'relative', overflow: 'hidden' }}>
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* 上部三列 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* 品牌列 */}
+      {/* 背景暗纹祥云 */}
+      <div className="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
+        <div className="absolute top-6 left-0 w-80"><CloudDeco opacity={0.08} /></div>
+        <div className="absolute top-6 right-0 w-80 scale-x-[-1]"><CloudDeco opacity={0.08} /></div>
+        <div className="absolute bottom-14 left-1/4 w-64"><CloudDeco opacity={0.06} /></div>
+        <div className="absolute bottom-14 right-1/4 w-64 scale-x-[-1]"><CloudDeco opacity={0.06} /></div>
+        {/* 大斜向装饰字 */}
+        <div
+          className="absolute -right-8 top-1/2 -translate-y-1/2 text-[180px] font-bold select-none pointer-events-none leading-none"
+          style={{
+            fontFamily: 'var(--font-serif)',
+            color: 'transparent',
+            WebkitTextStroke: '1px rgba(201,169,110,0.06)',
+            letterSpacing: '-0.05em',
+          }}
+        >
+          醒
+        </div>
+      </div>
+
+      {/* 顶部装饰线 — 三段渐变 */}
+      <div className="relative">
+        <div
+          className="h-px w-full"
+          style={{ background: 'linear-gradient(90deg, transparent 0%, #C9A96E 25%, #C41E24 50%, #C9A96E 75%, transparent 100%)' }}
+        />
+        {/* 顶部中央菱形徽章 */}
+        <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+          <div
+            className="w-3 h-3 rotate-45"
+            style={{ background: '#C41E24', border: '1px solid #C9A96E', boxShadow: '0 0 8px rgba(196,30,36,0.6)' }}
+          />
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 pt-14 pb-10 relative">
+
+        {/* 主内容区：品牌 + 三列链接 */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+
+          {/* 品牌区 — 占 5 列 */}
           <motion.div
-            className="md:col-span-1"
-            initial={{ opacity: 0, y: 20 }}
+            className="md:col-span-5"
+            initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10">
-                <circle cx="20" cy="18" r="12" stroke="#C41E24" strokeWidth="1.5" fill="none"/>
-                <path d="M14 12 Q20 6 26 12" stroke="#C9A96E" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                <ellipse cx="16" cy="17" rx="2" ry="2.5" fill="#C41E24"/>
-                <ellipse cx="24" cy="17" rx="2" ry="2.5" fill="#C41E24"/>
-                <circle cx="16.5" cy="16.5" r="0.8" fill="#FAF6F0"/>
-                <circle cx="24.5" cy="16.5" r="0.8" fill="#FAF6F0"/>
-                <path d="M19 21 Q20 22.5 21 21" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                <path d="M16 23 Q20 27 24 23" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                <line x1="8" y1="22" x2="14" y2="21" stroke="#C9A96E" strokeWidth="0.8"/>
-                <line x1="8" y1="24" x2="14" y2="23" strokeWidth="0.8" stroke="#C9A96E"/>
-                <line x1="26" y1="21" x2="32" y2="22" stroke="#C9A96E" strokeWidth="0.8"/>
-                <line x1="26" y1="23" x2="32" y2="24" stroke="#C9A96E" strokeWidth="0.8"/>
-                <circle cx="20" cy="4" r="1.5" fill="#C9A96E"/>
+            {/* Logo 行 */}
+            <div className="flex items-end gap-4 mb-6">
+              <svg viewBox="0 0 48 52" fill="none" className="w-12 h-14 flex-shrink-0" aria-label="醒狮图标">
+                {/* 顶球 */}
+                <circle cx="24" cy="5" r="3.5" stroke="#C9A96E" strokeWidth="1.2" fill="none"/>
+                <circle cx="24" cy="5" r="1.4" fill="#C41E24"/>
+                {/* 头部轮廓 */}
+                <ellipse cx="24" cy="26" rx="14" ry="16" stroke="#C41E24" strokeWidth="1.5" fill="none"/>
+                {/* 云纹额饰 */}
+                <path d="M16 14 Q18 10 20 12 Q20 8 24 10 Q28 8 28 12 Q30 10 32 14" stroke="#C9A96E" strokeWidth="0.9" fill="none" strokeLinecap="round"/>
+                {/* 眉 */}
+                <path d="M14 20 Q18 17 21 19" stroke="#C41E24" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                <path d="M27 19 Q30 17 34 20" stroke="#C41E24" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                {/* 眼 */}
+                <ellipse cx="19" cy="23" rx="3" ry="2.5" stroke="#C41E24" strokeWidth="1.2" fill="none"/>
+                <ellipse cx="29" cy="23" rx="3" ry="2.5" stroke="#C41E24" strokeWidth="1.2" fill="none"/>
+                <circle cx="19" cy="23" r="1.2" fill="#2C5F7C"/>
+                <circle cx="29" cy="23" r="1.2" fill="#2C5F7C"/>
+                <circle cx="18.3" cy="22.3" r="0.5" fill="white"/>
+                <circle cx="28.3" cy="22.3" r="0.5" fill="white"/>
+                {/* 鼻嘴 */}
+                <path d="M21 30 Q24 32 27 30" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
+                {/* 胡须 */}
+                <line x1="6" y1="28" x2="16" y2="27" stroke="#C9A96E" strokeWidth="0.8"/>
+                <line x1="6" y1="31" x2="16" y2="30" stroke="#C9A96E" strokeWidth="0.8"/>
+                <line x1="32" y1="27" x2="42" y2="28" stroke="#C9A96E" strokeWidth="0.8"/>
+                <line x1="32" y1="30" x2="42" y2="31" stroke="#C9A96E" strokeWidth="0.8"/>
+                {/* 流苏 */}
+                {[20, 22, 24, 26, 28].map((x, i) => (
+                  <line key={i} x1={x} y1="40" x2={x + (i - 2) * 0.4} y2="50" stroke="#C9A96E" strokeWidth="0.7" strokeLinecap="round"/>
+                ))}
               </svg>
               <div>
-                <p className="text-lg font-bold tracking-widest" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>醒狮</p>
-                <p className="text-xs tracking-[0.2em]" style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.6)' }}>非遗文化</p>
+                <h2
+                  className="text-3xl font-bold tracking-[0.15em] leading-none"
+                  style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}
+                >
+                  醒狮
+                </h2>
+                <p
+                  className="text-xs tracking-[0.35em] mt-1"
+                  style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.55)' }}
+                >
+                  非遗文化
+                </p>
               </div>
             </div>
+
+            {/* 简介 */}
             <p
-              className="text-sm leading-relaxed mb-6"
-              style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.5)', lineHeight: '1.9' }}
+              className="text-sm leading-relaxed mb-6 max-w-xs"
+              style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.45)', lineHeight: '2' }}
             >
               致力于保护与传承岭南醒狮非物质文化遗产，
               让这份千年文脉在新时代焕发新的光彩。
             </p>
-            {/* 联系方式 */}
-            <div className="flex flex-col gap-3">
-              {contactItems.map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="flex items-start gap-3"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.2 + i * 0.08 }}
+
+            {/* 非遗徽章 */}
+            <div className="flex items-center gap-3">
+              <div
+                className="flex items-center gap-2 px-4 py-2"
+                style={{
+                  border: '1px solid rgba(201,169,110,0.3)',
+                  background: 'rgba(201,169,110,0.06)',
+                }}
+              >
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
+                <span
+                  className="text-xs tracking-[0.25em]"
+                  style={{ fontFamily: 'var(--font-serif)', color: 'rgba(201,169,110,0.7)' }}
                 >
-                  <span style={{ color: '#C9A96E', marginTop: 1 }}>{item.icon}</span>
-                  <span
-                    className="text-xs leading-relaxed"
-                    style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.55)' }}
-                  >
-                    {item.label}
-                  </span>
-                </motion.div>
-              ))}
+                  国家级非物质文化遗产
+                </span>
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
+              </div>
             </div>
           </motion.div>
 
-          {/* 链接三列 */}
-          {footerLinks.map((col, i) => (
+          {/* 竖向装饰分隔线 */}
+          <div className="hidden md:flex md:col-span-1 justify-center">
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.15 + i * 0.1, duration: 0.6 }}
-            >
-              <h4
-                className="text-sm font-bold tracking-widest mb-5 pb-3 border-b"
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  color: '#C9A96E',
-                  borderColor: 'rgba(201,169,110,0.25)',
-                }}
+              className="w-px h-full"
+              style={{ background: 'linear-gradient(180deg, transparent, rgba(201,169,110,0.3) 30%, rgba(201,169,110,0.3) 70%, transparent)' }}
+              initial={{ scaleY: 0 }}
+              animate={inView ? { scaleY: 1 } : {}}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            />
+          </div>
+
+          {/* 三列链接 — 占 6 列 */}
+          <div className="md:col-span-6 grid grid-cols-3 gap-6">
+            {footerCols.map((col, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2 + i * 0.12, duration: 0.6 }}
               >
-                {col.title}
-              </h4>
-              <ul className="flex flex-col gap-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <motion.a
-                      href="#"
-                      className="text-sm transition-colors"
-                      style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.5)' }}
-                      whileHover={{ color: '#C9A96E', x: 4 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    >
-                      {link}
-                    </motion.a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+                {/* 列标题 + 装饰 */}
+                <div className="mb-5">
+                  <h4
+                    className="text-xs font-bold tracking-[0.3em] mb-1"
+                    style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}
+                  >
+                    {col.title}
+                  </h4>
+                  <div
+                    className="h-px w-8"
+                    style={{ background: 'linear-gradient(90deg, #C41E24, transparent)' }}
+                  />
+                </div>
+
+                {/* 链接列表 */}
+                <ul className="flex flex-col gap-3.5">
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      <motion.a
+                        href={link.href}
+                        className="text-sm flex items-center gap-1.5 group/fl"
+                        style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.45)' }}
+                        whileHover={{ color: '#FAF6F0', x: 3 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+                      >
+                        <span
+                          className="w-1 h-1 rounded-full flex-shrink-0 transition-colors duration-200 group-hover/fl:bg-red-600"
+                          style={{ background: 'rgba(201,169,110,0.4)' }}
+                        />
+                        {link.label}
+                      </motion.a>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* 金线分隔 */}
-        <div
-          className="h-px mb-8"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.4), transparent)' }}
-        />
+        {/* 分隔线 */}
+        <div className="relative mb-8">
+          <div
+            className="h-px"
+            style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.25) 20%, rgba(201,169,110,0.25) 80%, transparent)' }}
+          />
+          {/* 中央装饰 */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 px-4" style={{ background: '#2A1C12' }}>
+            <div className="w-4 h-px" style={{ background: '#C9A96E', opacity: 0.4 }} />
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 1 L8.5 5.5 L13 5.5 L9.5 8.5 L11 13 L7 10 L3 13 L4.5 8.5 L1 5.5 L5.5 5.5 Z" stroke="#C9A96E" strokeWidth="0.8" fill="none" opacity="0.6"/>
+            </svg>
+            <div className="w-4 h-px" style={{ background: '#C9A96E', opacity: 0.4 }} />
+          </div>
+        </div>
 
-        {/* 底部版权 */}
+        {/* 底部版权行 */}
         <motion.div
-          className="flex flex-col md:flex-row items-center justify-between gap-4"
+          className="flex flex-col md:flex-row items-center justify-between gap-3"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <div className="flex items-center gap-3">
-            {/* 小装饰 */}
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="10" r="8" stroke="#C9A96E" strokeWidth="0.8" opacity="0.5"/>
-              <circle cx="10" cy="10" r="3" fill="#C41E24" opacity="0.7"/>
-            </svg>
-            <p
-              className="text-xs tracking-wider"
-              style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.35)' }}
-            >
-              © 2024 岭南醒狮非遗文化展示平台 · 粤ICP备XXXXXXXX号
-            </p>
-          </div>
           <p
-            className="text-xs tracking-[0.2em] uppercase"
-            style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.4)' }}
+            className="text-xs tracking-wider"
+            style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.28)' }}
           >
-            Lingnan Lion Dance · National Intangible Cultural Heritage
+            © 2026 岭南醒狮非遗文化展示平台
           </p>
+          <div className="flex items-center gap-2">
+            <div className="w-1 h-1 rounded-full" style={{ background: 'rgba(196,30,36,0.5)' }} />
+            <p
+              className="text-xs tracking-[0.18em]"
+              style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.3)' }}
+            >
+              Lingnan Lion Dance · Intangible Cultural Heritage
+            </p>
+            <div className="w-1 h-1 rounded-full" style={{ background: 'rgba(196,30,36,0.5)' }} />
+          </div>
         </motion.div>
       </div>
 
-      {/* 底部红线 */}
-      <div className="h-1" style={{ background: '#C41E24' }} />
+      {/* 底部红色实线 */}
+      <div
+        className="h-1"
+        style={{ background: 'linear-gradient(90deg, #3D2B1F, #C41E24 30%, #C41E24 70%, #3D2B1F)' }}
+      />
     </footer>
   )
 }
