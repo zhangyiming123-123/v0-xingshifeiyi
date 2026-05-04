@@ -83,74 +83,50 @@ export default function HeroSection() {
       ════════════════════════════════ */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
 
-        {/* 层 1 — 蓝底黑狮，全屏铺底，最慢视差 */}
+        {/* 层 1 — 红底白狮，全屏铺满，视差漂移 */}
         <motion.div
           className="absolute inset-0"
-          style={{ y: bgShiftY2, x: bgShiftX2, scale: bgScale }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.8 }}
-        >
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mark%20Generation%20%2841%29.png-onMatZ9UHpOlGo9qTwir4hGEI1OMEI.jpeg"
-            alt=""
-            className="w-full h-full object-cover object-center"
-            style={{ opacity: 0.45 }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, #0E080690 70%, #0E0806 100%)',
-            }}
-          />
-        </motion.div>
-
-        {/* 层 2 — 红底白狮，右侧压入，快速视差 */}
-        <motion.div
-          className="absolute right-0 top-0 bottom-0"
-          style={{
-            width: '62%',
-            y: bgShiftY1,
-            x: bgShiftX1,
-            scale: bgScale,
-          }}
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ y: bgShiftY1, x: bgShiftX1, scale: bgScale }}
+          initial={{ opacity: 0, scale: 1.08 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2036.png-WCgGpqnHpUQwqciR70ZakMRqfiyS7M.jpeg"
             alt=""
             className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 30%' }}
+            style={{ objectPosition: 'center 30%', opacity: 0.55 }}
           />
-          {/* 左侧渐变融合 */}
+          {/* 四周暗角压制 */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(90deg, #0E0806 0%, #0E080675 22%, transparent 55%)',
+                'radial-gradient(ellipse 75% 70% at 55% 48%, transparent 30%, #0E080670 65%, #0E0806 100%)',
             }}
           />
-          {/* 底部渐变 */}
+          {/* 左侧文字区域加深 */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(180deg, #0E080660 0%, transparent 15%, transparent 75%, #0E0806 100%)',
+                'linear-gradient(100deg, #0E0806 0%, #0E080688 28%, transparent 60%)',
             }}
           />
         </motion.div>
 
-        {/* 层 3 — 全局色调遮罩：红色光晕 */}
-        <div
+        {/* 层 2 — 全局红色呼吸光晕 */}
+        <motion.div
           className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 55% 55% at 38% 55%, rgba(196,30,36,0.09) 0%, transparent 70%)',
-            pointerEvents: 'none',
+          style={{ pointerEvents: 'none' }}
+          animate={{
+            background: [
+              'radial-gradient(ellipse 55% 55% at 56% 50%, rgba(196,30,36,0.10) 0%, transparent 70%)',
+              'radial-gradient(ellipse 65% 65% at 56% 50%, rgba(196,30,36,0.18) 0%, transparent 70%)',
+              'radial-gradient(ellipse 55% 55% at 56% 50%, rgba(196,30,36,0.10) 0%, transparent 70%)',
+            ],
           }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         />
 
         {/* 宣纸肌理（超细噪点模拟） */}
@@ -208,22 +184,31 @@ export default function HeroSection() {
                 y: '-50%',
                 border: `${i === 0 ? 1 : 0.5}px ${i % 2 === 0 ? 'solid' : 'dashed'} ${
                   i === 0
-                    ? 'rgba(201,169,110,0.22)'
+                    ? 'rgba(201,169,110,0.28)'
                     : i === 1
-                    ? 'rgba(196,30,36,0.18)'
+                    ? 'rgba(196,30,36,0.22)'
                     : i === 2
-                    ? 'rgba(201,169,110,0.1)'
+                    ? 'rgba(201,169,110,0.14)'
                     : i === 3
-                    ? 'rgba(44,95,124,0.15)'
-                    : 'rgba(201,169,110,0.07)'
+                    ? 'rgba(44,95,124,0.18)'
+                    : 'rgba(201,169,110,0.08)'
                 }`,
               }}
-              initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                rotate: i % 2 === 0 ? [0, 360] : [0, -360],
+              }}
               transition={{
-                delay: 1.0 + i * 0.12,
-                duration: 1.2,
-                ease: [0.22, 1, 0.36, 1],
+                opacity: { delay: 1.0 + i * 0.12, duration: 1.0 },
+                scale: { delay: 1.0 + i * 0.12, duration: 1.0, ease: [0.22, 1, 0.36, 1] },
+                rotate: {
+                  delay: 1.0 + i * 0.12,
+                  duration: 20 + i * 8,
+                  repeat: Infinity,
+                  ease: 'linear',
+                },
               }}
             />
           ))}
@@ -243,8 +228,10 @@ export default function HeroSection() {
               opacity: 0.3 + (p.id % 4) * 0.1,
             }}
             animate={{
-              y: [0, -18, 0],
-              opacity: [0.2, 0.6, 0.2],
+              y: [0, -(18 + (p.id % 5) * 10), 0],
+              x: [0, (p.id % 2 === 0 ? 1 : -1) * (6 + (p.id % 4) * 4), 0],
+              opacity: [0.15, 0.7, 0.15],
+              scale: [1, 1.4, 1],
             }}
             transition={{
               duration: p.dur,
@@ -277,18 +264,30 @@ export default function HeroSection() {
           </motion.div>
         ))}
 
-        {/* 水平扫光线 */}
+        {/* 水平扫光线 — 持续循环 */}
         <motion.div
           className="absolute left-0 right-0"
           style={{
             height: '1px',
             top: '50%',
             background:
-              'linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.1) 25%, rgba(196,30,36,0.25) 50%, rgba(201,169,110,0.1) 75%, transparent 100%)',
+              'linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.08) 25%, rgba(196,30,36,0.3) 50%, rgba(201,169,110,0.08) 75%, transparent 100%)',
           }}
           initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ delay: 1.4, duration: 1.2 }}
+          animate={{ scaleX: [0, 1, 1], opacity: [0, 1, 0.4, 1, 0.4] }}
+          transition={{ delay: 1.4, duration: 1.2, times: [0, 0.6, 1], repeat: Infinity, repeatDelay: 3 }}
+        />
+        {/* 竖向扫光线 */}
+        <motion.div
+          className="absolute top-0 bottom-0"
+          style={{
+            width: '1px',
+            left: '38%',
+            background:
+              'linear-gradient(180deg, transparent 0%, rgba(201,169,110,0.06) 30%, rgba(196,30,36,0.18) 50%, rgba(201,169,110,0.06) 70%, transparent 100%)',
+          }}
+          animate={{ opacity: [0, 0.6, 0], scaleY: [0.3, 1, 0.3] }}
+          transition={{ delay: 2, duration: 3.5, repeat: Infinity, repeatDelay: 4, ease: 'easeInOut' }}
         />
       </div>
 
