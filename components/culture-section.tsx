@@ -78,11 +78,11 @@ const tabContent: Record<string, { title: string; body: string; details: string[
     imageAlt: '醒狮在祠堂前进行传统表演仪式，烟雾弥漫，气氛庄严',
   },
   technique: {
-    title: '醒狮的核心技法',
-    body: '醒狮表演讲究"喜、怒、哀、乐、动、静、惊、疑"八态，通过眼皮、嘴巴、耳朵的灵活操控，配合狮手的步法、桩功与身法，生动诠释狮子的喜怒哀乐。高难度的"采青"技艺是醒狮的灵魂，表演者需踩梅花桩、登高采青，融武术、杂技与艺术于一身。',
-    details: ['八态表演技法体系', '采青核心仪式动作', '南派武术桩步融合', '锣鼓击打配合节奏'],
-    image: '/images/lion-history-2.jpg',
-    imageAlt: '醒狮表演特写，展示精细的狮头工艺与表演者技艺',
+    title: '无武不成狮：醒狮的技法体系',
+    body: '醒狮技艺是武术根基、狮型八态、采青仪式与鼓乐指挥的综合融合。所谓"无武不成狮"，所有表演动作皆建立在扎实的南拳马步之上，最终在高桩竞技中达到艺术的极致。',
+    details: ['武术马步为基础根基', '狮型八态神似表演', '采青完整戏剧流程', '鼓乐总指挥配合'],
+    image: '/images/lion-history-1.jpg',
+    imageAlt: '醒狮表演者在传统场地展示高难度技法',
   },
 }
 
@@ -344,11 +344,11 @@ const statusBlocks = [
     items: [
       {
         label: '晋升全运会的里程碑',
-        body: '醒狮已被纳入全国运动会的正式比赛项目，这标志着其从民俗表演向官方认可的现代体育竞技的跨越。',
+        body: '醒狮已被纳��全国运动会的正式比赛项目，这标志着其从民俗表演向官方认可的现代体育竞技的跨越。',
       },
       {
         label: '激烈的国际赛事体系',
-        body: '澳门"狮王争霸国际赛"已成为世界三大甲级南狮赛事之一，吸引全球顶尖队伍同台竞技。高桩醒狮是核心竞技项目，狮队在数米高的梅花桩上完成腾跃等高难度动作，极具观赏性。',
+        body: '澳门"狮王争霸国际赛"已成为世界三大甲级南狮赛事之一，吸引全球顶尖队伍同台竞技。高桩醒狮是核心竞技项目，狮队在数米高的梅花桩上完成腾跃��高难度动作，极具观赏性。',
       },
     ],
   },
@@ -502,6 +502,302 @@ function StatusContent() {
             </span>
           </div>
         ))}
+      </motion.div>
+    </div>
+  )
+}
+
+// ─── 技法数据 ────────────────────────────────────────────────────────────────
+
+const eightStates = ['喜', '怒', '哀', '乐', '动', '静', '惊', '疑']
+
+const techniqueBlocks = [
+  {
+    icon: '武',
+    color: '#C41E24',
+    heading: '武术根基：所有动作之源',
+    intro: '所谓"无武不成狮"，醒狮的所有步法均来源于南派武术，舞狮人须先习武，以扎马步为最基本要求。',
+    items: [
+      {
+        label: '千变万化的步法',
+        body: '基本功是南派拳法的马步，实际表演中运用到的步法非常多样，包括马步、弓步、开合步、麒麟步、虚步、吊步、金鸡独立步等，在高空梅花桩上尤需稳健重心。',
+      },
+      {
+        label: '器械协同要求',
+        body: '舞狮头者要求"硬桥硬马，两手直托狮头"；舞狮尾者需熟练弯腰踢腿技巧。两人配合默契，协同一体，是醒狮表演的核心要求。',
+      },
+    ],
+  },
+  {
+    icon: '态',
+    color: '#2C5F7C',
+    heading: '狮型八态：讲故事的肢体语言',
+    intro: '醒狮表演的核心在于"演"活一头狮子。与侧重"形似"的北狮不同，南狮更强调"神似"，具体体现在对狮子"八态"的模拟上。',
+    items: [
+      {
+        label: '具体细节动作',
+        body: '通过"睁眼"、"洗须"、"舔身"、"抖毛"等一系列细节动作，结合八种神态，活灵活现地呈现狮子的各种情绪与状态，追求"形、神、意、气"的统一。',
+      },
+    ],
+  },
+  {
+    icon: '青',
+    color: '#C9A96E',
+    heading: '采青：一场完整的戏剧',
+    intro: '"采青"是醒狮表演最高潮的核心环节，整个过程构成一出有头有尾的微型戏剧，极大考验表演者的艺术能力。"青"通常由生菜（取"生财"之意）和红包组成，代表吉祥与财富。',
+    items: [
+      {
+        label: '程式化五步流程',
+        body: '起势出洞（狮子从沉睡中醒来巡视）→ 探桩上桩（试青/疑青/惊青）→ 采青食青（以高难度动作采摘）→ 碎青吐青（咬碎散播吉祥）→ 回洞收式（醉态尽显完成收尾）。',
+      },
+      {
+        label: '多样的青阵',
+        body: '高青：将"青"高悬，需叠罗汉或爬高竿；地青：放置地面，有水青、蟹青、八卦青等；中阵青：摆设阵法将"青"置于其中，增加难度与观赏性。',
+      },
+    ],
+  },
+  {
+    icon: '派',
+    color: '#3D2B1F',
+    heading: '流派风格：佛山狮与鹤山狮',
+    intro: '岭南醒狮在发展过程中，形成了两大流派，在步法和风格上各有千秋。',
+    items: [
+      {
+        label: '佛山狮（硬派）',
+        body: '硬桥硬马，声势雄壮，动作大开大合，彰显威猛与力量。主要以扎实稳健的南拳大马步为基础，是传统南派狮艺的代表。',
+      },
+      {
+        label: '鹤山狮（灵巧派）',
+        body: '灵巧活泼，情态可人，表演细腻，注重将狮的雄威与猫的活泼结合。晚清广东狮王冯庚长独创"狮型猫步"，步法轻巧灵动，变化多端。',
+      },
+    ],
+  },
+  {
+    icon: '鼓',
+    color: '#C41E24',
+    heading: '鼓乐：醒狮的灵魂指挥',
+    intro: '鼓乐不仅是伴奏，更是表演的"总指挥"。鼓声的轻重缓急直接影响着狮子的情绪和行为。',
+    items: [
+      {
+        label: '鼓谱节拍',
+        body: '南狮的敲打节拍以"三声"（三星鼓）和"七声"（七星鼓）为主，打法随表演状态而变化，包括"走路鼓"、"行狮"、"抛狮"、"咬七星"等不同节奏。',
+      },
+      {
+        label: '乐器配置',
+        body: '整个鼓乐队由鼓、锣、钹等乐器组成，以鼓为核心指挥全局。锣鼓铿锵有力，是醒狮表演不可分割的灵魂组成部分。',
+      },
+    ],
+  },
+]
+
+function TechniqueContent() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+
+  return (
+    <div ref={ref} className="mt-10 space-y-8">
+      {/* 装饰分隔线 */}
+      <motion.div
+        className="flex items-center gap-4"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, #C9A96E)' }} />
+        <span className="text-xs tracking-[0.4em] px-4" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>
+          技法详解
+        </span>
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }} />
+      </motion.div>
+
+      {/* 狮型八态可视化标签组 */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.1, duration: 0.5 }}
+        className="p-5"
+        style={{ border: '1px solid #C9A96E40', background: 'rgba(196,30,36,0.03)' }}
+      >
+        <p
+          className="text-xs tracking-[0.3em] mb-4 text-center"
+          style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}
+        >
+          狮型八态 · 神似为上
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          {eightStates.map((state, i) => (
+            <motion.div
+              key={state}
+              className="w-12 h-12 flex items-center justify-center text-lg font-bold cursor-default select-none"
+              style={{
+                fontFamily: 'var(--font-serif)',
+                color: '#FAF6F0',
+                background: i % 2 === 0 ? '#C41E24' : '#3D2B1F',
+                border: `1px solid ${i % 2 === 0 ? '#C41E24' : '#C9A96E'}`,
+              }}
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.15 + i * 0.06, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.15, zIndex: 10 }}
+            >
+              {state}
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* 五大技法板块 */}
+      {techniqueBlocks.map((block, bi) => (
+        <motion.div
+          key={bi}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2 + bi * 0.12, duration: 0.6, ease: 'easeOut' }}
+        >
+          {/* 标题行 */}
+          <div className="flex items-center gap-3 mb-4">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
+              style={{ background: block.color, color: '#FAF6F0', fontFamily: 'var(--font-serif)' }}
+            >
+              {block.icon}
+            </div>
+            <h4
+              className="text-base font-bold"
+              style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
+            >
+              {block.heading}
+            </h4>
+          </div>
+
+          <div className="pl-11 space-y-4">
+            {/* 简介 */}
+            <p
+              className="text-sm"
+              style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.9' }}
+            >
+              {block.intro}
+            </p>
+
+            {/* 条目列表 */}
+            {block.items.map((item, ii) => (
+              <motion.div
+                key={ii}
+                className="flex gap-3"
+                initial={{ opacity: 0, x: -12 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.25 + bi * 0.12 + ii * 0.08, duration: 0.5 }}
+              >
+                <div className="flex flex-col items-center flex-shrink-0 pt-1">
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: block.color }} />
+                  {ii < block.items.length - 1 && (
+                    <div className="w-px flex-1 mt-1" style={{ background: `${block.color}40`, minHeight: '28px' }} />
+                  )}
+                </div>
+                <div className="flex-1 pb-1">
+                  <span
+                    className="text-sm font-bold mr-2"
+                    style={{ fontFamily: 'var(--font-serif)', color: block.color }}
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.9' }}
+                  >
+                    {item.body}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {bi < techniqueBlocks.length - 1 && (
+            <div
+              className="mt-6 h-px"
+              style={{ background: 'linear-gradient(90deg, #C9A96E30, #C9A96E60, #C9A96E30)' }}
+            />
+          )}
+        </motion.div>
+      ))}
+
+      {/* 流派对照表 */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.85, duration: 0.5 }}
+        className="mt-4 overflow-x-auto"
+      >
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr style={{ background: '#3D2B1F' }}>
+              <th
+                className="px-4 py-3 text-left font-bold tracking-widest"
+                style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E', border: '1px solid #C9A96E40' }}
+              >
+                流派
+              </th>
+              <th
+                className="px-4 py-3 text-left font-bold tracking-widest"
+                style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E', border: '1px solid #C9A96E40' }}
+              >
+                风格特点
+              </th>
+              <th
+                className="px-4 py-3 text-left font-bold tracking-widest"
+                style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E', border: '1px solid #C9A96E40' }}
+              >
+                核心步法
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { name: '佛山狮', style: '硬桥硬马，声势雄壮，动作大开大合，彰显威猛与力量', step: '南拳大马步' },
+              { name: '鹤山狮', style: '灵巧活泼，情态可人，将狮的雄威与猫的活泼结合', step: '狮型猫步' },
+            ].map((row, i) => (
+              <tr
+                key={i}
+                style={{ background: i % 2 === 0 ? 'rgba(196,30,36,0.04)' : 'rgba(250,246,240,0.6)' }}
+              >
+                <td
+                  className="px-4 py-3 font-bold"
+                  style={{ fontFamily: 'var(--font-serif)', color: '#C41E24', border: '1px solid #C9A96E30' }}
+                >
+                  {row.name}
+                </td>
+                <td
+                  className="px-4 py-3"
+                  style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', border: '1px solid #C9A96E30' }}
+                >
+                  {row.style}
+                </td>
+                <td
+                  className="px-4 py-3 font-bold"
+                  style={{ fontFamily: 'var(--font-serif)', color: '#2C5F7C', border: '1px solid #C9A96E30' }}
+                >
+                  {row.step}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </motion.div>
+
+      {/* 总结引用 */}
+      <motion.div
+        className="p-5 border-l-2"
+        style={{ borderColor: '#C9A96E', background: 'rgba(201,169,110,0.06)' }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 1.0, duration: 0.5 }}
+      >
+        <p
+          className="text-sm italic"
+          style={{ fontFamily: 'var(--font-serif)', color: '#5A4035', lineHeight: '2' }}
+        >
+          醒狮技艺的最高境界，便是将深厚的<strong style={{ color: '#C41E24' }}>武术功底</strong>、生动的<strong style={{ color: '#C41E24' }}>故事演绎</strong>与激昂的<strong style={{ color: '#C41E24' }}>鼓乐指挥</strong>完美融合，最终在赛场上呈现惊险的高桩竞技。举世知名的黄飞鸿醒狮队，正是将三者结合得最出神入化的代表之一。
+        </p>
       </motion.div>
     </div>
   )
@@ -856,6 +1152,21 @@ export default function CultureSection() {
               style={{ overflow: 'hidden' }}
             >
               <StatusContent />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* 技法详解 — 仅在技法标签显示 */}
+        <AnimatePresence>
+          {activeTab === 'technique' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              style={{ overflow: 'hidden' }}
+            >
+              <TechniqueContent />
             </motion.div>
           )}
         </AnimatePresence>
