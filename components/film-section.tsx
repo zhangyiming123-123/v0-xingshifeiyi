@@ -3,26 +3,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const miniCards = [
-  {
-    title: '林醒的归途',
-    duration: '花絮',
-    desc: '拍摄团队跟随主角林醒走进涌口村，记录第一次重返故土的真实心路历程。',
-    tag: '幕后花絮',
-  },
-  {
-    title: '吉光镜下的人心',
-    duration: '花絮',
-    desc: '导演张熠铭讲述"吉光镜"意象的创作灵感，以及光与孤独如何在镜中相遇。',
-    tag: '幕后花絮',
-  },
-  {
-    title: '狮头开眼仪式',
-    duration: '精彩时刻',
-    desc: '影片最高潮：沉寂已久的狮头再度点睛，烟火人间里醒狮文化重新亮起的关键一幕。',
-    tag: '精彩时刻',
-  },
-]
 
 export default function FilmSection() {
   const [playing, setPlaying] = useState(false)
@@ -248,67 +228,7 @@ export default function FilmSection() {
           </motion.div>
         </div>
 
-        {/* 下方三列小卡片 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {miniCards.map((card, i) => (
-            <motion.div
-              key={i}
-              className="relative p-5 border cursor-pointer group overflow-hidden"
-              style={{ borderColor: 'rgba(201,169,110,0.3)', background: 'rgba(250,246,240,0.04)' }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-              whileHover={{ y: -4, borderColor: '#C41E24' }}
-            >
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: 'rgba(196,30,36,0.05)' }}
-              />
-              <div className="flex items-start justify-between mb-3">
-                <span
-                  className="text-xs px-2 py-0.5 tracking-wider"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    background: card.tag === '精彩时刻'
-                      ? 'rgba(196,30,36,0.18)'
-                      : 'rgba(201,169,110,0.15)',
-                    color: card.tag === '精彩时刻' ? '#C41E24' : '#C9A96E',
-                    border: `1px solid ${card.tag === '精彩时刻' ? 'rgba(196,30,36,0.35)' : 'rgba(201,169,110,0.25)'}`,
-                  }}
-                >
-                  {card.tag}
-                </span>
-                <span
-                  className="text-xs"
-                  style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.4)' }}
-                >
-                  {card.duration}
-                </span>
-              </div>
-              <h4
-                className="text-lg font-bold mb-2"
-                style={{ fontFamily: 'var(--font-serif)', color: '#FAF6F0' }}
-              >
-                {card.title}
-              </h4>
-              <p
-                className="text-sm"
-                style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.55)', lineHeight: '1.7' }}
-              >
-                {card.desc}
-              </p>
-              <div
-                className="mt-4 flex items-center gap-2 text-xs opacity-0 group-hover:opacity-100 transition-opacity"
-                style={{ color: '#C41E24' }}
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-                <span style={{ fontFamily: 'var(--font-sans)' }}>立即观看</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+
       </div>
     </section>
   )
