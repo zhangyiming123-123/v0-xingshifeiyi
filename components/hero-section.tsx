@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 
 const heroChars = ['岭', '南', '醒', '狮']
-
 const dots = [0, 1, 2]
 
 export default function HeroSection() {
   const [activeDot, setActiveDot] = useState(0)
+  const [hoveredChar, setHoveredChar] = useState<number | null>(null)
   const controls = useAnimation()
 
   useEffect(() => {
@@ -25,326 +25,375 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col rice-paper cloud-pattern overflow-hidden"
+      className="relative min-h-screen flex flex-col overflow-hidden"
+      style={{ background: '#1A0E08' }}
     >
-      {/* 背景装饰元素 */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-      >
+      {/* ── 全屏背景图层 ── */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+
+        {/* 红底白狮插画 — 右侧主视觉，撑满高度 */}
+        <motion.div
+          className="absolute right-0 top-0 bottom-0 w-[55%]"
+          initial={{ opacity: 0, scale: 1.06 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2036.png-WCgGpqnHpUQwqciR70ZakMRqfiyS7M.jpeg"
+            alt=""
+            className="w-full h-full object-cover object-center"
+          />
+          {/* 左侧渐变遮罩，让图片与左侧文字区平滑融合 */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(90deg, #1A0E08 0%, #1A0E0890 28%, transparent 60%)',
+            }}
+          />
+          {/* 顶底遮罩压暗 */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(180deg, #1A0E0860 0%, transparent 20%, transparent 80%, #1A0E08 100%)',
+            }}
+          />
+        </motion.div>
+
+        {/* 蓝底黑狮 — 左下角装饰压印 */}
+        <motion.div
+          className="absolute -left-16 bottom-0 w-72 h-72 md:w-96 md:h-96"
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 0.18, x: 0 }}
+          transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mark%20Generation%20%2841%29.png-onMatZ9UHpOlGo9qTwir4hGEI1OMEI.jpeg"
+            alt=""
+            className="w-full h-full object-contain"
+            style={{ mixBlendMode: 'screen' }}
+          />
+        </motion.div>
+
+        {/* 超大水印"醒"字 */}
+        <motion.div
+          className="absolute select-none pointer-events-none"
+          style={{
+            fontSize: 'clamp(240px, 40vw, 480px)',
+            fontFamily: 'var(--font-serif)',
+            color: 'transparent',
+            WebkitTextStroke: '1px rgba(201,169,110,0.08)',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            lineHeight: 1,
+            letterSpacing: '-0.05em',
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1.5 }}
+          aria-hidden="true"
+        >
+          醒
+        </motion.div>
+
+        {/* 曼陀罗同心圆装饰 — 右侧图片上叠加，呼应插画的圆形元素 */}
+        <motion.div
+          className="absolute right-[5%] top-1/2 -translate-y-1/2 pointer-events-none"
+          initial={{ opacity: 0, rotate: -30, scale: 0.7 }}
+          animate={{ opacity: 1, rotate: 0, scale: 1 }}
+          transition={{ delay: 1.0, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {[320, 280, 240, 200].map((size, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full border"
+              style={{
+                width: size,
+                height: size,
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                borderColor: i === 0
+                  ? 'rgba(201,169,110,0.25)'
+                  : i === 1
+                  ? 'rgba(196,30,36,0.2)'
+                  : i === 2
+                  ? 'rgba(201,169,110,0.12)'
+                  : 'rgba(196,30,36,0.1)',
+                borderStyle: i % 2 === 0 ? 'solid' : 'dashed',
+              }}
+            />
+          ))}
+        </motion.div>
+
         {/* 左上角古典角标 */}
-        <div className="absolute top-20 left-6 w-16 h-16 opacity-30">
-          <svg viewBox="0 0 64 64" fill="none">
-            <path d="M4 4 L28 4 M4 4 L4 28" stroke="#C9A96E" strokeWidth="2"/>
-            <path d="M8 8 L24 8 M8 8 L8 24" stroke="#C41E24" strokeWidth="1"/>
+        <motion.div
+          className="absolute top-24 left-6 w-20 h-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ delay: 1.5 }}
+        >
+          <svg viewBox="0 0 80 80" fill="none">
+            <path d="M4 4 L36 4 M4 4 L4 36" stroke="#C9A96E" strokeWidth="2"/>
+            <path d="M10 10 L28 10 M10 10 L10 28" stroke="#C41E24" strokeWidth="1"/>
           </svg>
-        </div>
+        </motion.div>
+
         {/* 右下角古典角标 */}
-        <div className="absolute bottom-24 right-6 w-16 h-16 opacity-30">
-          <svg viewBox="0 0 64 64" fill="none">
-            <path d="M60 60 L36 60 M60 60 L60 36" stroke="#C9A96E" strokeWidth="2"/>
-            <path d="M56 56 L40 56 M56 56 L56 40" stroke="#C41E24" strokeWidth="1"/>
+        <motion.div
+          className="absolute bottom-24 right-6 w-20 h-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ delay: 1.5 }}
+        >
+          <svg viewBox="0 0 80 80" fill="none">
+            <path d="M76 76 L44 76 M76 76 L76 44" stroke="#C9A96E" strokeWidth="2"/>
+            <path d="M70 70 L52 70 M70 70 L70 52" stroke="#C41E24" strokeWidth="1"/>
           </svg>
-        </div>
-        {/* 大红圆背景装饰 */}
-        <div
-          className="absolute top-1/4 right-0 w-96 h-96 rounded-full opacity-[0.04]"
-          style={{ background: '#C41E24', transform: 'translate(30%, -20%)' }}
-        />
-        <div
-          className="absolute bottom-1/4 left-0 w-64 h-64 rounded-full opacity-[0.03]"
-          style={{ background: '#2C5F7C', transform: 'translate(-30%, 20%)' }}
+        </motion.div>
+
+        {/* 横向扫光线条 */}
+        <motion.div
+          className="absolute left-0 right-0"
+          style={{
+            height: '1px',
+            top: '50%',
+            background: 'linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.15) 30%, rgba(196,30,36,0.2) 50%, rgba(201,169,110,0.15) 70%, transparent 100%)',
+          }}
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1.0 }}
         />
       </div>
 
-      {/* 主内容区域 */}
-      <div className="flex-1 flex items-center max-w-7xl mx-auto w-full px-6 pt-24 pb-16">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full">
+      {/* ── 主内容区域 ── */}
+      <div className="flex-1 flex items-center max-w-7xl mx-auto w-full px-8 pt-28 pb-16 relative z-10">
+        <div className="flex flex-col max-w-xl">
 
-          {/* 左侧文字内容 */}
-          <div className="flex-1 flex flex-col items-start">
-            {/* 非遗标签 */}
-            <motion.div
-              className="flex items-center gap-2 mb-6"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+          {/* 非遗标签 */}
+          <motion.div
+            className="flex items-center gap-3 mb-8"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <div
+              className="px-3 py-1 text-xs tracking-[0.3em] border"
+              style={{
+                fontFamily: 'var(--font-sans)',
+                color: '#C9A96E',
+                borderColor: 'rgba(201,169,110,0.5)',
+                background: 'rgba(201,169,110,0.08)',
+              }}
             >
-              <span
-                className="px-3 py-1 text-xs tracking-[0.25em] border"
-                style={{
-                  fontFamily: 'var(--font-sans)',
-                  color: '#2C5F7C',
-                  borderColor: '#2C5F7C',
-                  background: 'rgba(44,95,124,0.08)',
-                }}
-              >
-                国家级非物质文化遗产
-              </span>
-              <div className="h-px w-8" style={{ background: '#C9A96E' }} />
-              <span
-                className="text-xs tracking-widest"
-                style={{ fontFamily: 'var(--font-sans)', color: '#7A6055' }}
-              >
-                NATIONAL HERITAGE
-              </span>
-            </motion.div>
+              国家级非物质文化遗产
+            </div>
+            <div className="h-px w-6" style={{ background: '#C9A96E40' }} />
+            <span
+              className="text-[10px] tracking-[0.4em]"
+              style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.5)' }}
+            >
+              2006 · NATIONAL HERITAGE
+            </span>
+          </motion.div>
 
-            {/* 大标题书法字逐字动画 */}
-            <div className="flex items-end gap-3 mb-2" aria-label="岭南醒狮">
-              {heroChars.map((char, i) => (
+          {/* 书法大字 — 错落竖行感，逐字动画 */}
+          <div className="mb-4" aria-label="岭南醒狮">
+            {/* 前两字小一号，后两字放大，形成层次 */}
+            <div className="flex items-end gap-2 mb-1">
+              {['岭', '南'].map((char, i) => (
                 <motion.span
                   key={i}
-                  className="text-[clamp(4rem,12vw,8rem)] leading-none font-black select-none"
+                  className="cursor-default select-none"
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    color: '#C41E24',
-                    textShadow: '3px 3px 0 rgba(196,30,36,0.15)',
+                    fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
+                    lineHeight: 1,
+                    color: 'rgba(250,246,240,0.7)',
                     letterSpacing: '0.05em',
                   }}
-                  initial={{ opacity: 0, y: 30, filter: 'blur(6px)', scale: 0.85 }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
-                  transition={{
-                    delay: 0.4 + i * 0.15,
-                    duration: 0.7,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
+                  initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  transition={{ delay: 0.5 + i * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  onMouseEnter={() => setHoveredChar(i)}
+                  onMouseLeave={() => setHoveredChar(null)}
+                  whileHover={{ color: '#C9A96E', scale: 1.1 }}
                 >
                   {char}
                 </motion.span>
               ))}
             </div>
-
-            {/* 英文副标题 */}
-            <motion.p
-              className="text-base tracking-[0.3em] mb-4"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                color: '#7A6055',
-                letterSpacing: '0.25em',
-              }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.1, duration: 0.6 }}
-            >
-              LINGNAN LION DANCE · INTANGIBLE CULTURAL HERITAGE
-            </motion.p>
-
-            {/* 卷轴分隔线 */}
-            <motion.div
-              className="flex items-center gap-3 mb-6"
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ delay: 1.3, duration: 0.6, ease: 'easeOut' }}
-              style={{ transformOrigin: 'left' }}
-            >
-              <div className="h-px w-12" style={{ background: 'linear-gradient(90deg, #C41E24, #C9A96E)' }} />
-              <svg width="16" height="16" viewBox="0 0 16 16">
-                <circle cx="8" cy="8" r="6" stroke="#C9A96E" strokeWidth="1" fill="none"/>
-                <circle cx="8" cy="8" r="2" fill="#C41E24"/>
-              </svg>
-              <div className="h-px w-12" style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }} />
-            </motion.div>
-
-            {/* 描述文字 */}
-            <motion.p
-              className="text-base leading-relaxed mb-8 max-w-md"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                color: '#5A4035',
-                lineHeight: '1.9',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.6 }}
-            >
-              岭南醒狮，源于明代，集武术、舞蹈、音乐、杂技于一体，
-              融入岭南人的精气神，是中华优秀传统文化的璀璨明珠。
-              每逢节庆，锣鼓喧天，狮舞翩跹，传承千年不衰。
-            </motion.p>
-
-            {/* 按钮组 */}
-            <motion.div
-              className="flex items-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6, duration: 0.5 }}
-            >
-              <motion.a
-                href="#culture"
-                className="relative px-8 py-3 text-sm tracking-widest overflow-hidden"
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  background: '#C41E24',
-                  color: '#FAF6F0',
-                }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              >
-                <span className="relative z-10">探寻文脉</span>
-                <motion.div
-                  className="absolute inset-0"
-                  style={{ background: '#3D2B1F' }}
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
-
-              <motion.a
-                href="#film"
-                className="flex items-center gap-2 px-6 py-3 text-sm tracking-widest border"
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  color: '#3D2B1F',
-                  borderColor: '#C9A96E',
-                }}
-                whileHover={{
-                  scale: 1.03,
-                  color: '#C41E24',
-                  borderColor: '#C41E24',
-                }}
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-                观看短片
-              </motion.a>
-            </motion.div>
-          </div>
-
-          {/* 右侧醒狮真实图片 */}
-          <div className="flex-shrink-0 w-72 h-80 md:w-96 md:h-[440px] lg:w-[460px] lg:h-[520px] relative">
-            {/* 外圈光晕装饰 */}
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center pointer-events-none"
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div
-                className="absolute w-[90%] h-[90%] rounded-full"
-                style={{
-                  border: '1px solid rgba(201,169,110,0.35)',
-                  boxShadow: 'inset 0 0 60px rgba(196,30,36,0.06)',
-                }}
-              />
-              <div
-                className="absolute w-[78%] h-[78%] rounded-full"
-                style={{ border: '1px dashed rgba(201,169,110,0.2)' }}
-              />
-            </motion.div>
-
-            {/* 古典角标装饰 */}
-            {[
-              { pos: 'top-2 left-2', d0: 'M2 2 L16 2', d1: 'M2 2 L2 16' },
-              { pos: 'top-2 right-2', d0: 'M30 2 L16 2', d1: 'M30 2 L30 16' },
-              { pos: 'bottom-2 left-2', d0: 'M2 30 L16 30', d1: 'M2 30 L2 16' },
-              { pos: 'bottom-2 right-2', d0: 'M30 30 L16 30', d1: 'M30 30 L30 16' },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                className={`absolute ${item.pos} w-8 h-8`}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 0.6, scale: 1 }}
-                transition={{ delay: 0.8 + i * 0.1 }}
-                aria-hidden="true"
-              >
-                <svg viewBox="0 0 32 32" fill="none">
-                  <path d={item.d0} stroke="#C9A96E" strokeWidth="1.5"/>
-                  <path d={item.d1} stroke="#C9A96E" strokeWidth="1.5"/>
-                </svg>
-              </motion.div>
-            ))}
-
-            {/* 醒狮图片主体 */}
-            <motion.div
-              className="relative w-full h-full float-anim"
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.5, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* 图片容器：圆形裁切 + 金边 */}
-              <div
-                className="w-full h-full rounded-full overflow-hidden"
-                style={{
-                  border: '3px solid rgba(201,169,110,0.6)',
-                  boxShadow: '0 0 0 6px rgba(201,169,110,0.12), 0 20px 60px rgba(196,30,36,0.25), 0 8px 32px rgba(61,43,31,0.3)',
-                }}
-              >
-                <img
-                  src="/images/lion-dance-hero.jpg"
-                  alt="岭南醒狮舞狮表演，色彩鲜艳的狮头道具特写"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center 20%' }}
-                />
-              </div>
-
-              {/* 底部徽章标签 */}
-              <motion.div
-                className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-5 py-1.5 flex items-center gap-2"
-                style={{
-                  background: '#3D2B1F',
-                  border: '1px solid rgba(201,169,110,0.5)',
-                }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.4, duration: 0.5 }}
-              >
-                <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
-                <span
-                  className="text-xs tracking-widest whitespace-nowrap"
-                  style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
+            <div className="flex items-end gap-3">
+              {['醒', '狮'].map((char, i) => (
+                <motion.span
+                  key={i}
+                  className="cursor-default select-none"
+                  style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 'clamp(5rem, 14vw, 9rem)',
+                    lineHeight: 0.9,
+                    color: i === 0 ? '#C41E24' : '#FAF6F0',
+                    letterSpacing: '0.02em',
+                    textShadow: i === 0
+                      ? '0 0 40px rgba(196,30,36,0.4), 4px 4px 0 rgba(196,30,36,0.2)'
+                      : '4px 4px 0 rgba(61,43,31,0.5)',
+                  }}
+                  initial={{ opacity: 0, y: 40, filter: 'blur(12px)', scale: 0.88 }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
+                  transition={{ delay: 0.8 + i * 0.18, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                  onMouseEnter={() => setHoveredChar(i + 2)}
+                  onMouseLeave={() => setHoveredChar(null)}
+                  whileHover={{ scale: 1.04, y: -4 }}
                 >
-                  岭南非遗 · 醒狮表演
-                </span>
-                <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
-              </motion.div>
-            </motion.div>
+                  {char}
+                </motion.span>
+              ))}
+            </div>
           </div>
+
+          {/* 装饰分隔线 */}
+          <motion.div
+            className="flex items-center gap-3 mb-6"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ delay: 1.3, duration: 0.7, ease: 'easeOut' }}
+            style={{ transformOrigin: 'left' }}
+          >
+            <div className="h-[2px] w-10" style={{ background: '#C41E24' }} />
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2 L12.5 7.5 L18 8.5 L14 12.5 L15 18 L10 15 L5 18 L6 12.5 L2 8.5 L7.5 7.5 Z" stroke="#C9A96E" strokeWidth="1" fill="rgba(201,169,110,0.15)"/>
+            </svg>
+            <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #C9A96E60, transparent)' }} />
+          </motion.div>
+
+          {/* 副标题 + 描述 */}
+          <motion.p
+            className="text-sm mb-2 tracking-[0.25em]"
+            style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.7)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4, duration: 0.6 }}
+          >
+            LINGNAN LION DANCE · INTANGIBLE CULTURAL HERITAGE
+          </motion.p>
+          <motion.p
+            className="text-sm leading-loose mb-10"
+            style={{
+              fontFamily: 'var(--font-sans)',
+              color: 'rgba(250,246,240,0.55)',
+              lineHeight: '2',
+            }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+          >
+            源于唐代，盛于岭南。集武术、舞蹈、音乐于一体，<br />
+            每逢节庆，锣鼓喧天，狮舞翩跹，传承千年不衰。
+          </motion.p>
+
+          {/* 按钮组 */}
+          <motion.div
+            className="flex items-center gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.7, duration: 0.5 }}
+          >
+            <motion.a
+              href="#culture"
+              className="relative px-8 py-3 text-sm tracking-widest overflow-hidden"
+              style={{
+                fontFamily: 'var(--font-serif)',
+                background: '#C41E24',
+                color: '#FAF6F0',
+              }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            >
+              <motion.div
+                className="absolute inset-0"
+                style={{ background: '#8B1218' }}
+                initial={{ x: '-100%' }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative z-10">探寻文脉</span>
+            </motion.a>
+
+            <motion.a
+              href="#film"
+              className="flex items-center gap-2 px-6 py-3 text-sm tracking-widest border"
+              style={{
+                fontFamily: 'var(--font-serif)',
+                color: '#C9A96E',
+                borderColor: 'rgba(201,169,110,0.5)',
+              }}
+              whileHover={{ borderColor: '#C9A96E', color: '#FAF6F0', scale: 1.03 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              观看短片
+            </motion.a>
+          </motion.div>
         </div>
       </div>
 
-      {/* 底部轮播点 + 滚动提示 */}
-      <div className="flex flex-col items-center gap-4 pb-8">
-        {/* 轮播点 */}
+      {/* ── 右侧插画徽章浮动层（仅大屏显示，叠于图上） ── */}
+      <motion.div
+        className="hidden lg:block absolute right-[6%] top-1/2 -translate-y-1/2 z-10 pointer-events-none"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
+      >
+        {/* 底部标签 */}
+        <div
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-6 py-2 flex items-center gap-2 whitespace-nowrap"
+          style={{ background: 'rgba(26,14,8,0.85)', border: '1px solid rgba(201,169,110,0.4)' }}
+        >
+          <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
+          <span
+            className="text-xs tracking-[0.3em]"
+            style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
+          >
+            岭南非遗 · 醒狮文化
+          </span>
+          <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
+        </div>
+      </motion.div>
+
+      {/* ── 底部轮播点 + 滚动提示 ── */}
+      <div className="relative z-10 flex flex-col items-center gap-4 pb-10">
         <div className="flex items-center gap-3">
           {dots.map((dot) => (
             <motion.button
               key={dot}
               onClick={() => setActiveDot(dot)}
-              className="relative rounded-full"
-              style={{
-                width: activeDot === dot ? 24 : 8,
-                height: 8,
-                background: activeDot === dot ? '#C41E24' : '#C9A96E',
-                opacity: activeDot === dot ? 1 : 0.4,
-              }}
-              animate={{
-                width: activeDot === dot ? 24 : 8,
-                background: activeDot === dot ? '#C41E24' : '#C9A96E',
-              }}
-              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               aria-label={`轮播点 ${dot + 1}`}
+              style={{
+                height: 6,
+                borderRadius: 3,
+                background: activeDot === dot ? '#C41E24' : 'rgba(201,169,110,0.35)',
+              }}
+              animate={{ width: activeDot === dot ? 28 : 6 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             />
           ))}
         </div>
 
-        {/* 滚动提示 */}
         <motion.div
-          className="flex flex-col items-center gap-1 opacity-50"
+          className="flex flex-col items-center gap-1"
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
         >
           <span
             className="text-xs tracking-widest"
-            style={{ fontFamily: 'var(--font-sans)', color: '#7A6055' }}
+            style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.45)' }}
           >
             向下探索
           </span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7A6055" strokeWidth="2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(201,169,110,0.45)" strokeWidth="2" aria-hidden="true">
             <path d="M12 5v14M5 12l7 7 7-7"/>
           </svg>
         </motion.div>
