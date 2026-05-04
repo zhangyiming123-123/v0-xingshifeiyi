@@ -9,6 +9,7 @@ const tabs = [
   { id: 'origin', label: '起源' },
   { id: 'status', label: '地位' },
   { id: 'technique', label: '技法' },
+  { id: 'lionhead', label: '狮头制作' },
 ]
 
 const timelineEvents = [
@@ -84,6 +85,13 @@ const tabContent: Record<string, { title: string; body: string; details: string[
     details: ['武术马步为基础根基', '狮型八态神似表演', '采青完整戏剧流程', '鼓乐总指挥配合'],
     image: '/images/lion-technique.jpg',
     imageAlt: '金黄色醒狮站立于梅花桩顶，展示高桩采青技艺，背景为深色树丛',
+  },
+  lionhead: {
+    title: '扎·扑·写·装：狮头制作四道工序',
+    body: '一颗狮头，是一位匠人数日乃至数周心血的结晶。从精选竹篾到装上能眨眼的眼珠，四道工序环环相扣，赋予这件艺术品力量与灵魂。选择什么颜色的狮头，就是选择一种"性格"和"气场"。',
+    details: ['工序一：扎——骨架成型', '工序二：扑——披纱挂绸', '工序三：写——彩笔传神', '工序四：装——点睛配饰'],
+    image: '/images/lion-history-2.jpg',
+    imageAlt: '岭南醒狮表演现场，彩绘华丽的狮头展示精湛工艺',
   },
 }
 
@@ -508,6 +516,374 @@ function StatusContent() {
   )
 }
 
+// ─── 狮头制作数据 ──────────────────────────────────────────────────────────────
+
+const craftSteps = [
+  {
+    num: '一',
+    char: '扎',
+    color: '#C41E24',
+    title: '骨架成型，千点定神',
+    intro: '这是狮头制作的灵魂所在，也是最考验匠人功力的第一步，关乎狮头最终的"气韵"。',
+    items: [
+      { label: '精选竹材', body: '首选广东清远或广宁生长3至5年的老桂竹，冬至后采伐，水分少、质地坚韧且不易生虫，再剖成上百根粗细、长短各不相同的篾条。' },
+      { label: '开篾与软化', body: '将竹篾剖削至不同规格，关键部位（如主骨架）的篾条需用烛火烤软，以增强韧性使其易于弯曲造型。' },
+      { label: '扎成形架', body: '以鼻梁、额头、腮骨主架为起点，用浸湿纱纸条将交叉竹篾扎结固定并刷上浆糊，形成约1300个扎点。精益求精的匠人恪守"额宽额高3:2比例、狮耳对称45度"的严格规范。' },
+    ],
+  },
+  {
+    num: '二',
+    char: '扑',
+    color: '#2C5F7C',
+    title: '披纱挂绸，强基固形',
+    intro: '骨架扎好后，用纱纸和布料为狮头糊上一层层"皮肤"，使其既坚韧又平整。',
+    items: [
+      { label: '多层裱糊', body: '在骨架上均匀涂抹特制浆糊，层层裱上纱纸和纱布。传统狮头扑多达六层纱纸，现代工艺常用"两层纱纸＋一层纱布＋一层纱纸"，兼顾强度与轻便。' },
+      { label: '精塑五官', body: '从狮头背部、前额等大面积区域开始，再细致处理鼻、角、眼窝等复杂部位。每粘贴一层都要仔细抚平，糊好的狮头置阴凉处自然风干，表皮总厚度通常控制在2毫米以内。' },
+    ],
+  },
+  {
+    num: '三',
+    char: '写',
+    color: '#C9A96E',
+    title: '彩笔传神，赋予性格',
+    intro: '风干后的素胚将在匠人笔下获得生命。彩绘是赋予狮头独特性格与精神的关键。',
+    items: [
+      { label: '脸谱化身', body: '岭南狮头汲取了传统粤剧脸谱精髓：黄底刘备狮象征仁义尊贵，红底关羽狮代表忠义胜利，黑底张飞狮寓意勇猛霸气，不同色彩代表不同历史人物及品格。' },
+      { label: '刚劲纹样', body: '匠人用毛笔绘制唐草纹（象征繁荣）、虎斑纹（象征辟邪）、火焰纹（装饰感极强）等纹样，线条刚劲有力，色彩对比强烈，层次分明。' },
+    ],
+  },
+  {
+    num: '四',
+    char: '装',
+    color: '#3D2B1F',
+    title: '点睛配饰，神形兼备',
+    intro: '这是赋予狮头"生命感"的最后一步，通过各种配件的装配，让狮子"活"起来。',
+    items: [
+      { label: '点睛与动感装配', body: '贴上能灵活转动的活动眼珠并装上眼帘使狮子能够"眨眼"传神；装上能活动的下巴，部分高端狮头还装有让耳朵晃动的"机关"与发声铜铃，使整个狮头随舞动者动作活灵活现。' },
+      { label: '华美装饰', body: '额头中央镶嵌代表智慧的铜镜，狮角、狮耳等部位装上色彩各异的绒毛球。最终整个狮头固定在藤圈之上，作为舞狮者的操控把手。' },
+    ],
+  },
+]
+
+const lionColors = [
+  {
+    name: '黄狮', subtitle: '刘备狮',
+    swatch: '#D4A017',
+    swatchBorder: '#C9A96E',
+    symbol: '仁义帝王',
+    patterns: '五彩唐草花纹（五彩刘备面）',
+    traits: '仁义、尊贵、祥和、睿智',
+    occasion: '大型庆典、迎宾、喜庆节日等正式场合，代表最高礼遇',
+    tag: '最高礼遇',
+    tagColor: '#C9A96E',
+  },
+  {
+    name: '红狮', subtitle: '关羽狮',
+    swatch: '#C41E24',
+    swatchBorder: '#C41E24',
+    symbol: '忠义胜利',
+    patterns: '黑眉黑须，额上"二龙争珠"或"金钱"纹',
+    traits: '忠义、勇敢、财富、胜利',
+    occasion: '开业庆典、祝寿、竞赛，寓意红红火火、旗开得胜',
+    tag: '最常见',
+    tagColor: '#C41E24',
+  },
+  {
+    name: '黑狮', subtitle: '张飞狮',
+    swatch: '#1A1A1A',
+    swatchBorder: '#555',
+    symbol: '勇猛霸气',
+    patterns: '黑脸黑须，青鼻红额，额绘"火焰"或"八卦"纹',
+    traits: '勇猛、好斗、刚烈、辟邪',
+    occasion: '打擂、斗狮、驱邪除煞、挑战高难青阵，民间有"黑狮最狠"之说',
+    tag: '最霸气',
+    tagColor: '#555',
+  },
+  {
+    name: '绿狮', subtitle: '赵子龙狮',
+    swatch: '#2D7A4F',
+    swatchBorder: '#2D7A4F',
+    symbol: '忠勇机智',
+    patterns: '翠绿底色配金纹装饰',
+    traits: '忠勇、年轻气盛、机智',
+    occasion: '竞技或私人喜庆场合，寓意生机勃勃',
+    tag: '竞技常见',
+    tagColor: '#2D7A4F',
+  },
+  {
+    name: '蓝狮', subtitle: '马超狮',
+    swatch: '#2C5F7C',
+    swatchBorder: '#2C5F7C',
+    symbol: '刚毅沉稳',
+    patterns: '深蓝底色，配以银灰色纹饰',
+    traits: '刚毅、沉稳、威猛',
+    occasion: '竞技或特定武术门派，相对少见',
+    tag: '较为少见',
+    tagColor: '#2C5F7C',
+  },
+  {
+    name: '白狮', subtitle: '黄忠狮',
+    swatch: '#D8D0C0',
+    swatchBorder: '#aaa',
+    symbol: '沉稳智谋',
+    patterns: '银白或灰白底色，配以金色描边',
+    traits: '沉稳、智谋、老当益壮',
+    occasion: '特定场合，代表黄忠智谋，并非丧事用色，纯白极为罕见',
+    tag: '极为罕见',
+    tagColor: '#888',
+  },
+]
+
+function LionHeadContent() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [activeColor, setActiveColor] = useState<number | null>(null)
+
+  return (
+    <div ref={ref} className="mt-10 space-y-14">
+
+      {/* ── 表一：工序流程 ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        {/* 标题行 */}
+        <div className="flex items-center gap-4 mb-8">
+          <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, #C9A96E)' }} />
+          <span className="text-xs tracking-[0.4em] px-4 whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>
+            表一 · 扎作工序
+          </span>
+          <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }} />
+        </div>
+
+        {/* 四步流程横向卡片 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {craftSteps.map((step, si) => (
+            <motion.div
+              key={si}
+              className="relative overflow-hidden"
+              style={{ border: `1px solid ${step.color}40`, background: 'rgba(250,246,240,0.5)' }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 + si * 0.12, duration: 0.55, ease: 'easeOut' }}
+            >
+              {/* 左侧色条 */}
+              <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: step.color }} />
+
+              <div className="pl-6 pr-5 pt-5 pb-5">
+                {/* 工序标题 */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className="w-10 h-10 flex-shrink-0 flex flex-col items-center justify-center"
+                    style={{ background: step.color }}
+                  >
+                    <span className="text-[10px] leading-none" style={{ color: 'rgba(250,246,240,0.7)', fontFamily: 'var(--font-sans)' }}>
+                      工序{step.num}
+                    </span>
+                    <span className="text-xl leading-none font-bold" style={{ color: '#FAF6F0', fontFamily: 'var(--font-serif)' }}>
+                      {step.char}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold" style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}>
+                      {step.title}
+                    </h4>
+                    <p className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-sans)', color: '#9A7A6A' }}>
+                      {step.intro}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 条目 */}
+                <div className="space-y-3">
+                  {step.items.map((item, ii) => (
+                    <motion.div
+                      key={ii}
+                      className="flex gap-3"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.2 + si * 0.12 + ii * 0.07, duration: 0.45 }}
+                    >
+                      <div className="flex flex-col items-center flex-shrink-0 pt-1">
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: step.color }} />
+                        {ii < step.items.length - 1 && (
+                          <div className="w-px flex-1 mt-1" style={{ background: `${step.color}35`, minHeight: '20px' }} />
+                        )}
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold mr-1.5" style={{ fontFamily: 'var(--font-serif)', color: step.color }}>
+                          {item.label}
+                        </span>
+                        <span className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.85' }}>
+                          {item.body}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 流派对比小条 */}
+        <motion.div
+          className="mt-6 p-4 flex flex-col sm:flex-row gap-4"
+          style={{ background: '#3D2B1F', border: '1px solid #C9A96E40' }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.65, duration: 0.45 }}
+        >
+          <div className="flex-1">
+            <span className="text-xs tracking-widest block mb-1" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>佛山狮（硬派）</span>
+            <p className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.75)' }}>
+              狮头圆、口阔，造型威武霸气，眼大明亮，大开大合——霸气外露的硬派代表。
+            </p>
+          </div>
+          <div className="w-px hidden sm:block" style={{ background: '#C9A96E40' }} />
+          <div className="flex-1">
+            <span className="text-xs tracking-widest block mb-1" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>鹤山狮（灵巧派）</span>
+            <p className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.75)' }}>
+              狮头较扁而长，最具标志性的是像青蛙一样的"蛤乸嘴"，显得灵巧机敏，栩栩如生。
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* ── 表二：颜色选择 ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
+        {/* 标题行 */}
+        <div className="flex items-center gap-4 mb-8">
+          <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, #C9A96E)' }} />
+          <span className="text-xs tracking-[0.4em] px-4 whitespace-nowrap" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>
+            表二 · 颜色与性格
+          </span>
+          <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }} />
+        </div>
+
+        {/* 色块网格 */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+          {lionColors.map((lc, ci) => (
+            <motion.button
+              key={ci}
+              onClick={() => setActiveColor(activeColor === ci ? null : ci)}
+              className="text-left relative overflow-hidden transition-all duration-300 focus:outline-none group"
+              style={{
+                border: activeColor === ci ? `2px solid ${lc.swatch}` : '1px solid rgba(201,169,110,0.3)',
+                background: activeColor === ci ? `${lc.swatch}12` : 'rgba(250,246,240,0.5)',
+              }}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.35 + ci * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -3 }}
+            >
+              {/* 顶部色条 */}
+              <div className="h-1.5 w-full" style={{ background: lc.swatch }} />
+
+              <div className="p-4">
+                {/* 色块 + 名称 */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-9 h-9 rounded-full flex-shrink-0"
+                    style={{
+                      background: lc.swatch,
+                      border: `2px solid ${lc.swatchBorder}`,
+                      boxShadow: `0 2px 8px ${lc.swatch}50`,
+                    }}
+                  />
+                  <div>
+                    <div className="font-bold text-sm" style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}>
+                      {lc.name}
+                    </div>
+                    <div className="text-xs" style={{ fontFamily: 'var(--font-sans)', color: '#9A7A6A' }}>
+                      {lc.subtitle}
+                    </div>
+                  </div>
+                  <span
+                    className="ml-auto text-[10px] px-2 py-0.5 whitespace-nowrap"
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      color: lc.tagColor,
+                      border: `1px solid ${lc.tagColor}60`,
+                      background: `${lc.tagColor}10`,
+                    }}
+                  >
+                    {lc.tag}
+                  </span>
+                </div>
+
+                {/* 象征 */}
+                <div className="text-xs font-bold mb-2" style={{ fontFamily: 'var(--font-serif)', color: lc.swatch === '#1A1A1A' ? '#666' : lc.swatch }}>
+                  {lc.symbol}
+                </div>
+
+                {/* 展开详情 */}
+                <AnimatePresence>
+                  {activeColor === ci && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <div className="pt-3 space-y-2" style={{ borderTop: `1px solid ${lc.swatch}30` }}>
+                        <div>
+                          <span className="text-[10px] tracking-wider" style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}>脸谱纹样</span>
+                          <p className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.7' }}>{lc.patterns}</p>
+                        </div>
+                        <div>
+                          <span className="text-[10px] tracking-wider" style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}>性格象征</span>
+                          <p className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.7' }}>{lc.traits}</p>
+                        </div>
+                        <div>
+                          <span className="text-[10px] tracking-wider" style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}>使用场合</span>
+                          <p className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.7' }}>{lc.occasion}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* 点击提示 */}
+                {activeColor !== ci && (
+                  <p className="text-[10px] mt-1 opacity-50" style={{ fontFamily: 'var(--font-sans)', color: '#9A7A6A' }}>
+                    点击查看详情
+                  </p>
+                )}
+              </div>
+            </motion.button>
+          ))}
+        </div>
+
+        {/* 色彩规律结语 */}
+        <motion.div
+          className="p-5 border-l-2"
+          style={{ borderColor: '#C9A96E', background: 'rgba(201,169,110,0.06)' }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.85, duration: 0.45 }}
+        >
+          <p className="text-xs tracking-widest mb-2" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>色彩搭配的规律</p>
+          <p className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.9' }}>
+            主色决定角色——狮头的主体颜色决定了其扮演的基本人物和性格底色。大部分狮头无论主色，额顶都会镶嵌<strong style={{ color: '#C41E24' }}>明镜</strong>（代表"照妖镜"或智慧），并配以金色、银色或彩色的绒球、流苏增加华丽感。现代竞技或文创中经常出现粉、紫、靛蓝等非传统色，但文化核心仍以<strong style={{ color: '#C41E24' }}>红、黄、黑、绿、蓝</strong>五大正色为基础。
+          </p>
+          <p className="text-sm mt-3 italic" style={{ fontFamily: 'var(--font-serif)', color: '#7A5A4A' }}>
+            选择什么颜色的狮头，就是选择一种"性格"和"气场"。
+          </p>
+        </motion.div>
+      </motion.div>
+
+    </div>
+  )
+}
+
 // ─── 技法数据 ────────────────────────────────────────────────────────────────
 
 const eightStates = ['喜', '怒', '哀', '乐', '动', '静', '惊', '疑']
@@ -585,7 +961,7 @@ const techniqueBlocks = [
       },
       {
         label: '乐器配置',
-        body: '整个鼓乐队由鼓、锣、钹等乐器组成，以鼓为核心指挥全局。锣鼓铿锵有力，是醒狮表演不可分割的灵���组成部分。',
+        body: '整个鼓乐队由鼓、锣、钹等乐器组成，以鼓为���心指挥全局。锣鼓铿锵有力，是醒狮表演不可分割的灵���组成部分。',
       },
     ],
   },
@@ -1169,6 +1545,21 @@ export default function CultureSection() {
               style={{ overflow: 'hidden' }}
             >
               <StatusContent />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* 狮头制作 — 仅在狮头制作标签显示 */}
+        <AnimatePresence>
+          {activeTab === 'lionhead' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              style={{ overflow: 'hidden' }}
+            >
+              <LionHeadContent />
             </motion.div>
           )}
         </AnimatePresence>
