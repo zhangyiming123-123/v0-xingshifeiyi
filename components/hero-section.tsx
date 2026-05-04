@@ -5,94 +5,6 @@ import { motion, useAnimation } from 'framer-motion'
 
 const heroChars = ['岭', '南', '醒', '狮']
 
-function LionHeadSVG() {
-  return (
-    <svg
-      viewBox="0 0 400 460"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-      aria-label="岭南醒狮线条狮头插图"
-    >
-      {/* 顶部装饰球 */}
-      <circle cx="200" cy="30" r="18" stroke="#C9A96E" strokeWidth="1.5" fill="none"/>
-      <circle cx="200" cy="30" r="10" stroke="#C41E24" strokeWidth="1" fill="none"/>
-      <circle cx="200" cy="30" r="4" fill="#C41E24"/>
-
-      {/* 头顶羽毛装饰 */}
-      <path d="M170 55 Q160 30 175 40 Q165 20 185 35 Q178 15 200 25" stroke="#C9A96E" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M230 55 Q240 30 225 40 Q235 20 215 35 Q222 15 200 25" stroke="#C9A96E" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-
-      {/* 额头云纹 */}
-      <path d="M145 90 Q155 75 165 85 Q162 68 178 75 Q175 60 195 68 Q195 55 210 60 Q215 50 228 58 Q235 65 232 75 Q245 78 242 90" stroke="#C9A96E" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-
-      {/* 主脸型 */}
-      <ellipse cx="200" cy="200" rx="115" ry="130" stroke="#C41E24" strokeWidth="2" fill="none"/>
-
-      {/* 耳朵 */}
-      <path d="M85 140 Q65 110 75 85 Q90 70 108 88 Q95 100 92 120 Z" stroke="#C41E24" strokeWidth="1.5" fill="none"/>
-      <path d="M90 130 Q78 108 85 90 Q96 82 107 95 Q98 105 96 122 Z" stroke="#C9A96E" strokeWidth="1" fill="none"/>
-      <path d="M315 140 Q335 110 325 85 Q310 70 292 88 Q305 100 308 120 Z" stroke="#C41E24" strokeWidth="1.5" fill="none"/>
-      <path d="M310 130 Q322 108 315 90 Q304 82 293 95 Q302 105 304 122 Z" stroke="#C9A96E" strokeWidth="1" fill="none"/>
-
-      {/* 眉毛 */}
-      <path d="M130 160 Q155 145 175 155" stroke="#C41E24" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-      <path d="M225 155 Q245 145 270 160" stroke="#C41E24" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-
-      {/* 眼睛外圈 */}
-      <ellipse cx="158" cy="185" rx="26" ry="22" stroke="#C41E24" strokeWidth="2" fill="none"/>
-      <ellipse cx="242" cy="185" rx="26" ry="22" stroke="#C41E24" strokeWidth="2" fill="none"/>
-
-      {/* 眼睛内部 */}
-      <ellipse cx="158" cy="185" rx="16" ry="14" stroke="#2C5F7C" strokeWidth="1.5" fill="none"/>
-      <ellipse cx="242" cy="185" rx="16" ry="14" stroke="#2C5F7C" strokeWidth="1.5" fill="none"/>
-      <circle cx="158" cy="185" r="7" fill="#2C5F7C" opacity="0.8"/>
-      <circle cx="242" cy="185" r="7" fill="#2C5F7C" opacity="0.8"/>
-      <circle cx="155" cy="182" r="3" fill="white" opacity="0.9"/>
-      <circle cx="239" cy="182" r="3" fill="white" opacity="0.9"/>
-
-      {/* 鼻子区域 */}
-      <path d="M185 230 Q200 240 215 230" stroke="#C41E24" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <ellipse cx="200" cy="235" rx="12" ry="8" stroke="#C41E24" strokeWidth="1.5" fill="none"/>
-
-      {/* 胡须 */}
-      <line x1="60" y1="250" x2="145" y2="238" stroke="#C9A96E" strokeWidth="1.2"/>
-      <line x1="55" y1="265" x2="145" y2="255" stroke="#C9A96E" strokeWidth="1.2"/>
-      <line x1="65" y1="278" x2="145" y2="272" stroke="#C9A96E" strokeWidth="1"/>
-      <line x1="340" y1="250" x2="255" y2="238" stroke="#C9A96E" strokeWidth="1.2"/>
-      <line x1="345" y1="265" x2="255" y2="255" stroke="#C9A96E" strokeWidth="1.2"/>
-      <line x1="335" y1="278" x2="255" y2="272" stroke="#C9A96E" strokeWidth="1"/>
-
-      {/* 嘴巴/下颌 */}
-      <path d="M148 265 Q165 280 200 282 Q235 280 252 265" stroke="#C41E24" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <path d="M155 285 Q175 310 200 315 Q225 310 245 285" stroke="#C41E24" strokeWidth="2" fill="none" strokeLinecap="round"/>
-      <path d="M148 265 Q148 295 155 285" stroke="#C41E24" strokeWidth="1.5" fill="none"/>
-      <path d="M252 265 Q252 295 245 285" stroke="#C41E24" strokeWidth="1.5" fill="none"/>
-
-      {/* 下颌装饰流苏 */}
-      <path d="M160 315 Q158 340 155 360 Q160 380 158 400" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      <path d="M175 318 Q173 345 172 368 Q175 390 173 410" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      <path d="M190 320 Q188 348 188 372 Q190 395 188 415" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      <path d="M200 320 Q200 350 200 375 Q200 398 200 418" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      <path d="M210 320 Q212 348 212 372 Q210 395 212 415" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      <path d="M225 318 Q227 345 228 368 Q225 390 227 410" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
-      <path d="M240 315 Q242 340 245 360 Q240 380 242 400" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
-
-      {/* 流苏底部装饰 */}
-      <path d="M155 400 Q158 410 155 418" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M173 410 Q175 420 172 428" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M188 415 Q190 425 188 433" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M200 418 Q200 428 200 436" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M212 415 Q210 425 212 433" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M227 410 Q225 420 228 428" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-      <path d="M245 400 Q242 410 245 418" stroke="#C41E24" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-
-      {/* 脸部祥云装饰 */}
-      <path d="M200 130 Q193 120 186 125 Q180 115 174 122 Q170 114 178 110 Q185 104 195 112 Q200 105 205 112 Q215 104 222 110 Q230 114 226 122 Q220 115 214 125 Q207 120 200 130 Z" stroke="#C9A96E" strokeWidth="1" fill="none"/>
-    </svg>
-  )
-}
-
 const dots = [0, 1, 2]
 
 export default function HeroSection() {
@@ -303,59 +215,93 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* 右侧狮头SVG */}
-          <div className="flex-shrink-0 w-72 h-80 md:w-96 md:h-[440px] lg:w-[420px] lg:h-[480px] relative">
-            {/* 背景圆形装饰 */}
+          {/* 右侧醒狮真实图片 */}
+          <div className="flex-shrink-0 w-72 h-80 md:w-96 md:h-[440px] lg:w-[460px] lg:h-[520px] relative">
+            {/* 外圈光晕装饰 */}
             <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.5 }}
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
               <div
-                className="absolute w-4/5 h-4/5 rounded-full"
+                className="absolute w-[90%] h-[90%] rounded-full"
                 style={{
-                  border: '1px solid rgba(201,169,110,0.3)',
-                  background: 'radial-gradient(circle, rgba(196,30,36,0.04) 0%, transparent 70%)',
+                  border: '1px solid rgba(201,169,110,0.35)',
+                  boxShadow: 'inset 0 0 60px rgba(196,30,36,0.06)',
                 }}
               />
               <div
-                className="absolute w-3/5 h-3/5 rounded-full"
+                className="absolute w-[78%] h-[78%] rounded-full"
                 style={{ border: '1px dashed rgba(201,169,110,0.2)' }}
               />
             </motion.div>
 
             {/* 古典角标装饰 */}
             {[
-              'top-4 left-4',
-              'top-4 right-4',
-              'bottom-4 left-4',
-              'bottom-4 right-4',
-            ].map((pos, i) => (
+              { pos: 'top-2 left-2', d0: 'M2 2 L16 2', d1: 'M2 2 L2 16' },
+              { pos: 'top-2 right-2', d0: 'M30 2 L16 2', d1: 'M30 2 L30 16' },
+              { pos: 'bottom-2 left-2', d0: 'M2 30 L16 30', d1: 'M2 30 L2 16' },
+              { pos: 'bottom-2 right-2', d0: 'M30 30 L16 30', d1: 'M30 30 L30 16' },
+            ].map((item, i) => (
               <motion.div
                 key={i}
-                className={`absolute ${pos} w-8 h-8 opacity-50`}
+                className={`absolute ${item.pos} w-8 h-8`}
                 initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 0.5, scale: 1 }}
+                animate={{ opacity: 0.6, scale: 1 }}
                 transition={{ delay: 0.8 + i * 0.1 }}
+                aria-hidden="true"
               >
                 <svg viewBox="0 0 32 32" fill="none">
-                  {i === 0 && <><line x1="2" y1="2" x2="14" y2="2" stroke="#C9A96E" strokeWidth="1.5"/><line x1="2" y1="2" x2="2" y2="14" stroke="#C9A96E" strokeWidth="1.5"/></>}
-                  {i === 1 && <><line x1="30" y1="2" x2="18" y2="2" stroke="#C9A96E" strokeWidth="1.5"/><line x1="30" y1="2" x2="30" y2="14" stroke="#C9A96E" strokeWidth="1.5"/></>}
-                  {i === 2 && <><line x1="2" y1="30" x2="14" y2="30" stroke="#C9A96E" strokeWidth="1.5"/><line x1="2" y1="30" x2="2" y2="18" stroke="#C9A96E" strokeWidth="1.5"/></>}
-                  {i === 3 && <><line x1="30" y1="30" x2="18" y2="30" stroke="#C9A96E" strokeWidth="1.5"/><line x1="30" y1="30" x2="30" y2="18" stroke="#C9A96E" strokeWidth="1.5"/></>}
+                  <path d={item.d0} stroke="#C9A96E" strokeWidth="1.5"/>
+                  <path d={item.d1} stroke="#C9A96E" strokeWidth="1.5"/>
                 </svg>
               </motion.div>
             ))}
 
-            {/* 狮头主体 */}
+            {/* 醒狮图片主体 */}
             <motion.div
               className="relative w-full h-full float-anim"
-              initial={{ opacity: 0, rotate: -15, scale: 0.85 }}
-              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.5, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              <LionHeadSVG />
+              {/* 图片容器：圆形裁切 + 金边 */}
+              <div
+                className="w-full h-full rounded-full overflow-hidden"
+                style={{
+                  border: '3px solid rgba(201,169,110,0.6)',
+                  boxShadow: '0 0 0 6px rgba(201,169,110,0.12), 0 20px 60px rgba(196,30,36,0.25), 0 8px 32px rgba(61,43,31,0.3)',
+                }}
+              >
+                <img
+                  src="/images/lion-dance-hero.jpg"
+                  alt="岭南醒狮舞狮表演，色彩鲜艳的狮头道具特写"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center 20%' }}
+                />
+              </div>
+
+              {/* 底部徽章标签 */}
+              <motion.div
+                className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-5 py-1.5 flex items-center gap-2"
+                style={{
+                  background: '#3D2B1F',
+                  border: '1px solid rgba(201,169,110,0.5)',
+                }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.5 }}
+              >
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
+                <span
+                  className="text-xs tracking-widest whitespace-nowrap"
+                  style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
+                >
+                  岭南非遗 · 醒狮表演
+                </span>
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#C41E24' }} />
+              </motion.div>
             </motion.div>
           </div>
         </div>
