@@ -71,11 +71,11 @@ const tabContent: Record<string, { title: string; body: string; details: string[
     imageAlt: '金色与红色醒狮在岭南古建筑前共同表演，色彩热烈，气氛浓郁',
   },
   status: {
-    title: '非遗保护与文化地位',
-    body: '2006年，岭南醒狮被列入首批国家级非物质文化遗产名录，成为中华优秀传统文化的代表之一。如今，醒狮已走出国门，在东南亚、北美、欧洲的华人聚居区广泛传播，成为海外华人凝聚乡情、传承文化的重要纽带。',
-    details: ['2006年入选国家级非遗', '海外华人文化纽带', '中外文化交流使者', '申报联合国非遗项目'],
-    image: '/images/lion-history-1.jpg',
-    imageAlt: '醒狮在祠堂前进行传统表演仪式',
+    title: '国家认证：非遗名录上的明珠',
+    body: '2006年，广东醒狮被列入第一批国家级非物质文化遗产名录。这份认可开启了它从传统民俗向国家文化名片的转型之路，如今已成为连接全球华人的精神纽带。',
+    details: ['2006年入选国家级非遗', '全运会正式竞赛项目', '世界三大甲级南狮赛事', '全球华人精神原乡'],
+    image: '/images/lion-history-2.jpg',
+    imageAlt: '醒狮在祠堂前进行传统表演仪式，烟雾弥漫，气氛庄严',
   },
   technique: {
     title: '醒狮的核心技法',
@@ -180,7 +180,7 @@ const originBlocks = [
     icon: '源',
     heading: '源流演变：从中原到岭南',
     items: [
-      { label: '滥觞于宫廷', body: '最早的源头可追溯到唐代宫廷的《太平乐》（又称《五方狮子舞》），是一种规模宏大、妆造华丽的宫廷庆典乐舞。' },
+      { label: '滥觞于宫廷', body: '最早的源��可追溯到唐代宫廷的《太平乐》（又称《五方狮子舞》），是一种规模宏大、妆造华丽的宫廷庆典乐舞。' },
       { label: '南传与形成', body: '五代十国时期，随着中原移民大量南迁，这种宫廷乐舞也传入岭南，与当地文化融合，逐渐世俗化并扎根下来。' },
       { label: '狮武合一', body: '到了清代，因官方"禁教抑武"，民间习武群体将南派武术融入舞狮，形成"狮武合一"的传统，使醒狮的动作充满力量与功架。' },
     ],
@@ -307,6 +307,201 @@ function OriginContent() {
         >
           因此，岭南醒狮的"起源"是一个层层叠加的过程：它<strong style={{ color: '#C41E24' }}>发端于唐代宫廷</strong>，<strong style={{ color: '#C41E24' }}>壮大于明代佛山</strong>，并在近代被赋予<strong style={{ color: '#C41E24' }}>唤醒民族精神</strong>的深刻内涵。
         </p>
+      </motion.div>
+    </div>
+  )
+}
+
+const statusBlocks = [
+  {
+    icon: '证',
+    color: '#C41E24',
+    heading: '国家认证：非遗名录上的明珠',
+    intro: '2006年，广东醒狮被列入第一批国家级非物质文化遗产名录。这份国家级认可，不仅确认了它的文化价值，也开启了它从传统民俗向国家文化名片的转型之路。',
+    items: [],
+  },
+  {
+    icon: '魂',
+    color: '#2C5F7C',
+    heading: '文化象征：一个"醒"字的精神灌注',
+    intro: '"醒狮"二字，本身就是对岭南乃至中华民族精神的绝妙提炼。',
+    items: [
+      {
+        label: '历史赋予的民族觉醒之魂',
+        body: '"醒狮"的概念诞生于清末民初。当时，有识之士借用"睡狮"的比喻，将"醒"字赋予舞狮，使其承载了唤醒民族自觉、鼓舞国人奋起的时代精神。',
+      },
+      {
+        label: '表里如一的南派艺术精髓',
+        body: '不同地位和性格的狮头角色皆有对应：黄狮代表仁义、红狮代表忠义、黑狮代表勇猛。与侧重"形似"的北狮不同，南狮更强调"神似"，讲究"形、神、意、气"的统一，追求展现狮子的精气神。',
+      },
+    ],
+  },
+  {
+    icon: '竞',
+    color: '#C9A96E',
+    heading: '体育竞技：从街头戏台到世界赛场',
+    intro: '醒狮已发展为一项拥有国际竞赛体系的现代体育项目。',
+    items: [
+      {
+        label: '晋升全运会的里程碑',
+        body: '醒狮已被纳入全国运动会的正式比赛项目，这标志着其从民俗表演向官方认可的现代体育竞技的跨越。',
+      },
+      {
+        label: '激烈的国际赛事体系',
+        body: '澳门"狮王争霸国际赛"已成为世界三大甲级南狮赛事之一，吸引全球顶尖队伍同台竞技。高桩醒狮是核心竞技项目，狮队在数米高的梅花桩上完成腾跃等高难度动作，极具观赏性。',
+      },
+    ],
+  },
+  {
+    icon: '桥',
+    color: '#C41E24',
+    heading: '国际影响：连接世界的文化桥梁',
+    intro: '醒狮早已跨越国界，成为中华文化在全球的生动名片和连接全球华人的精神纽带。',
+    items: [
+      {
+        label: '全球华人的精神原乡',
+        body: '只要有华人聚居的地方，就有醒狮。它是全球华人同胞的文化母港，是连接海内外华人的精神纽带。',
+      },
+      {
+        label: '响彻世界的中国声音',
+        body: '从巴西圣保罗、南非电视台到英国伦敦，醒狮的鼓点和雄姿不断上演。在马来西亚等东南亚国家，醒狮文化更是蓬勃发展，当地醒狮队已成为国际赛场上的劲旅。',
+      },
+    ],
+  },
+]
+
+function StatusContent() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+
+  return (
+    <div ref={ref} className="mt-10 space-y-8">
+      {/* 装饰分隔线 */}
+      <motion.div
+        className="flex items-center gap-4"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, #C9A96E)' }} />
+        <span className="text-xs tracking-[0.4em] px-4" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>
+          地位详解
+        </span>
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }} />
+      </motion.div>
+
+      {/* 四个板块 */}
+      {statusBlocks.map((block, bi) => (
+        <motion.div
+          key={bi}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1 + bi * 0.13, duration: 0.6, ease: 'easeOut' }}
+        >
+          {/* 标题行 */}
+          <div className="flex items-center gap-3 mb-4">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
+              style={{ background: block.color, color: '#FAF6F0', fontFamily: 'var(--font-serif)' }}
+            >
+              {block.icon}
+            </div>
+            <h4
+              className="text-base font-bold"
+              style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
+            >
+              {block.heading}
+            </h4>
+          </div>
+
+          {/* 板块内容 */}
+          <div className="pl-11 space-y-4">
+            {/* 简介段落 */}
+            {block.intro && (
+              <p
+                className="text-sm"
+                style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.9' }}
+              >
+                {block.intro}
+              </p>
+            )}
+
+            {/* 条目列表 */}
+            {block.items.map((item, ii) => (
+              <motion.div
+                key={ii}
+                className="flex gap-3"
+                initial={{ opacity: 0, x: -12 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.2 + bi * 0.13 + ii * 0.08, duration: 0.5 }}
+              >
+                <div className="flex flex-col items-center flex-shrink-0 pt-1">
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: block.color }} />
+                  {ii < block.items.length - 1 && (
+                    <div className="w-px flex-1 mt-1" style={{ background: `${block.color}40`, minHeight: '28px' }} />
+                  )}
+                </div>
+                <div className="flex-1 pb-1">
+                  <span
+                    className="text-sm font-bold mr-2"
+                    style={{ fontFamily: 'var(--font-serif)', color: block.color }}
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.9' }}
+                  >
+                    {item.body}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* 板块分隔线 */}
+          {bi < statusBlocks.length - 1 && (
+            <div
+              className="mt-6 h-px"
+              style={{ background: 'linear-gradient(90deg, #C9A96E30, #C9A96E60, #C9A96E30)' }}
+            />
+          )}
+        </motion.div>
+      ))}
+
+      {/* 数据亮点条 */}
+      <motion.div
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 pt-6"
+        style={{ borderTop: '1px solid #C9A96E40' }}
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.7, duration: 0.5 }}
+      >
+        {[
+          { num: '2006', label: '列入国家级非遗' },
+          { num: '全运', label: '正式竞赛项目' },
+          { num: '世界三大', label: '甲级南狮赛事' },
+          { num: '全球', label: '华人精神纽带' },
+        ].map((stat, i) => (
+          <div
+            key={i}
+            className="flex flex-col items-center p-4 text-center"
+            style={{ background: 'rgba(196,30,36,0.04)', border: '1px solid #C9A96E30' }}
+          >
+            <span
+              className="text-xl font-bold mb-1"
+              style={{ fontFamily: 'var(--font-serif)', color: '#C41E24' }}
+            >
+              {stat.num}
+            </span>
+            <span
+              className="text-xs"
+              style={{ fontFamily: 'var(--font-sans)', color: '#7A6055' }}
+            >
+              {stat.label}
+            </span>
+          </div>
+        ))}
       </motion.div>
     </div>
   )
@@ -646,6 +841,21 @@ export default function CultureSection() {
               style={{ overflow: 'hidden' }}
             >
               <HistoryTimeline />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* 地位详解 — 仅在地位标签显示 */}
+        <AnimatePresence>
+          {activeTab === 'status' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              style={{ overflow: 'hidden' }}
+            >
+              <StatusContent />
             </motion.div>
           )}
         </AnimatePresence>
