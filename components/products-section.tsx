@@ -186,7 +186,7 @@ function ProductCard({
       {/* 图片区 */}
       <div className="relative overflow-hidden" style={{ aspectRatio: '1 / 1' }}>
         <motion.div
-          className="w-full h-full"
+          className="relative w-full h-full"
           whileHover={{ scale: 1.06 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
         >

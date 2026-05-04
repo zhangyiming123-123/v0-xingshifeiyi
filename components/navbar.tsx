@@ -25,7 +25,8 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 transition-colors duration-500"
+      className="fixed top-0 left-0 right-0 z-50"
+      initial={{ backgroundColor: '#FAF6F0', boxShadow: '0 1px 0 rgba(201,169,110,0.4)' }}
       animate={{
         backgroundColor: scrolled ? '#3D2B1F' : '#FAF6F0',
         boxShadow: scrolled
