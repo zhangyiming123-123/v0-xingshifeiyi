@@ -7,51 +7,45 @@ import { motion, useInView } from 'framer-motion'
 const products = [
   {
     id: 1,
-    name: '醒狮青花茶杯',
+    name: '醒狮陶瓷杯垫',
     category: '器物文玩',
-    price: '¥168',
-    image: '/images/product-1.jpg',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2057-WJEdfYfxy4vFE3hyl2bA82Uqx6Wm2l.png',
     tag: '热销',
   },
   {
     id: 2,
-    name: '醒狮刺绣折扇',
-    category: '民俗工艺',
-    price: '¥238',
-    image: '/images/product-2.jpg',
+    name: '醒狮烫金冰箱贴',
+    category: '生活文创',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2053%20%281%29-uq4GGeBIXfMlsWv48SxV55d3QAa8EV.png',
     tag: '非遗',
   },
   {
     id: 3,
-    name: '醒狮彩绘摆件',
-    category: '文创雕塑',
-    price: '¥388',
-    image: '/images/product-3.jpg',
+    name: '醒狮折扇',
+    category: '民俗工艺',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2058%20%281%29-tYfPFc8NsMVHuy3tnWLWfPQZ6GzSEt.png',
     tag: '限量',
   },
   {
     id: 4,
-    name: '醒狮宣纸艺术版画',
-    category: '书画艺术',
-    price: '¥128',
-    image: '/images/product-4.jpg',
+    name: '醒狮贺岁红包',
+    category: '节庆文创',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2055-NIQHiVce14z9dC6t6ZZTvWrWCAf6lK.png',
     tag: '新品',
   },
   {
     id: 5,
-    name: '醒狮刺绣香囊',
-    category: '民俗工艺',
-    price: '¥88',
-    image: '/images/product-5.jpg',
+    name: '醒狮国风明信片',
+    category: '书画文创',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2056%20%281%29-z4lPfAEDai5TI0FmZGab9nkBgHsZHz.png',
     tag: '热销',
   },
   {
     id: 6,
-    name: '醒狮传统彩灯',
-    category: '节庆文创',
-    price: '¥298',
-    image: '/images/product-6.jpg',
-    tag: '节庆',
+    name: '醒狮硬皮笔记本',
+    category: '文具文创',
+    image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Image%2054%20%281%29-ywpBiiPdJjmpDF0GR7NRmr4Nc8iDMt.png',
+    tag: '精选',
   },
 ]
 
@@ -136,27 +130,19 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
 
       {/* 产品信息 */}
       <div className="px-4 py-4">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <p
-              className="text-xs tracking-wider mb-1"
-              style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
-            >
-              {product.category}
-            </p>
-            <h3
-              className="text-base font-bold leading-tight"
-              style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
-            >
-              {product.name}
-            </h3>
-          </div>
-          <span
-            className="text-lg font-bold flex-shrink-0"
-            style={{ fontFamily: 'var(--font-serif)', color: '#C41E24' }}
+        <div>
+          <p
+            className="text-xs tracking-wider mb-1"
+            style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
           >
-            {product.price}
-          </span>
+            {product.category}
+          </p>
+          <h3
+            className="text-base font-bold leading-tight"
+            style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
+          >
+            {product.name}
+          </h3>
         </div>
 
         {/* 金线分隔 */}
