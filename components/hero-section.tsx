@@ -59,18 +59,32 @@ export default function HeroSection() {
           />
         </motion.div>
 
-        {/* 蓝底黑狮 — 左下角装饰压印 */}
+        {/* 蓝底黑狮 — 左侧大幅铺底，与红狮形成双侧包夹 */}
         <motion.div
-          className="absolute -left-16 bottom-0 w-72 h-72 md:w-96 md:h-96"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 0.18, x: 0 }}
-          transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute left-0 top-0 bottom-0 w-[48%]"
+          initial={{ opacity: 0, scale: 1.06 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mark%20Generation%20%2841%29.png-onMatZ9UHpOlGo9qTwir4hGEI1OMEI.jpeg"
             alt=""
-            className="w-full h-full object-contain"
-            style={{ mixBlendMode: 'screen' }}
+            className="w-full h-full object-cover object-center"
+            style={{ opacity: 0.28 }}
+          />
+          {/* 右侧渐变遮罩，让蓝狮向中间自然消隐 */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(90deg, #1A0E08 0%, transparent 35%, #1A0E08 100%)',
+            }}
+          />
+          {/* 顶底压暗 */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(180deg, #1A0E0880 0%, transparent 25%, transparent 75%, #1A0E08 100%)',
+            }}
           />
         </motion.div>
 
