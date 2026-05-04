@@ -1,6 +1,6 @@
 import Navbar from '@/components/navbar'
 import HeroSection from '@/components/hero-section'
-import CultureSection from '@/components/culture-section'
+import CultureSection, { LionHeadSection } from '@/components/culture-section'
 import FilmSection from '@/components/film-section'
 import ProductsSection from '@/components/products-section'
 import Footer from '@/components/footer'
@@ -11,6 +11,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <CultureSection />
+      <LionHeadSection />
       <FilmSection />
       <ProductsSection />
       <Footer />

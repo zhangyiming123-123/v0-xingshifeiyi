@@ -9,7 +9,6 @@ const tabs = [
   { id: 'origin', label: '起源' },
   { id: 'status', label: '地位' },
   { id: 'technique', label: '技法' },
-  { id: 'lionhead', label: '狮头制作' },
 ]
 
 const timelineEvents = [
@@ -85,13 +84,6 @@ const tabContent: Record<string, { title: string; body: string; details: string[
     details: ['武术马步为基础根基', '狮型八态神似表演', '采青完整戏剧流程', '鼓乐总指挥配合'],
     image: '/images/lion-technique.jpg',
     imageAlt: '金黄色醒狮站立于梅花桩顶，展示高桩采青技艺，背景为深色树丛',
-  },
-  lionhead: {
-    title: '扎·扑·写·装：狮头制作四道工序',
-    body: '一颗狮头，是一位匠人数日乃至数周心血的结晶。从精选竹篾到装上能眨眼的眼珠，四道工序环环相扣，赋予这件艺术品力量与灵魂。选择什么颜色的狮头，就是选择一种"性格"和"气场"。',
-    details: ['工序一：扎——骨架成型', '工序二：扑——披纱挂绸', '工序三：写——彩笔传神', '工序四：装——点睛配饰'],
-    image: '/images/lion-history-2.jpg',
-    imageAlt: '岭南醒狮表演现场，彩绘华丽的狮头展示精湛工艺',
   },
 }
 
@@ -1549,21 +1541,6 @@ export default function CultureSection() {
           )}
         </AnimatePresence>
 
-        {/* 狮头制作 — 仅在狮头制作标签显示 */}
-        <AnimatePresence>
-          {activeTab === 'lionhead' && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-              style={{ overflow: 'hidden' }}
-            >
-              <LionHeadContent />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* 技法详解 — 仅在技法标签显示 */}
         <AnimatePresence>
           {activeTab === 'technique' && (
@@ -1630,6 +1607,84 @@ export default function CultureSection() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── 独立狮头制作板块 ──────────────────────────────────────────────────────────
+
+export function LionHeadSection() {
+  const ref = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  return (
+    <section
+      id="lionhead"
+      ref={ref}
+      className="relative py-20 md:py-28 overflow-hidden"
+      style={{ background: '#FAF6F0' }}
+    >
+      {/* 宣纸纹理暗纹 */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 Q60 5 70 15 Q80 5 90 15 Q85 25 80 20 Q70 30 60 20 Q55 30 50 25 Q45 30 40 20 Q30 30 20 20 Q15 25 10 15 Q20 5 30 15 Q40 5 50 10Z' fill='%23C41E24'/%3E%3C/svg%3E")`,
+          backgroundSize: '200px 200px',
+        }}
+      />
+      {/* 超大水印字 */}
+      <div
+        className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none"
+        style={{
+          fontSize: 'clamp(160px, 22vw, 320px)',
+          fontFamily: 'var(--font-serif)',
+          color: 'rgba(196,30,36,0.04)',
+          lineHeight: 1,
+          userSelect: 'none',
+        }}
+        aria-hidden="true"
+      >
+        扎
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6">
+        {/* 板块标题 */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          {/* 祥云装饰线 */}
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, transparent, #C9A96E)' }} />
+            <svg width="28" height="14" viewBox="0 0 56 28" fill="none" aria-hidden="true">
+              <path d="M4 14 Q8 6 14 10 Q16 4 22 8 Q24 2 28 6 Q32 2 34 8 Q40 4 42 10 Q48 6 52 14 Q48 22 42 18 Q40 24 34 20 Q32 26 28 22 Q24 26 22 20 Q16 24 14 18 Q8 22 4 14Z" fill="#C9A96E" opacity="0.5"/>
+            </svg>
+            <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }} />
+          </div>
+          <p className="text-xs tracking-[0.5em] mb-3" style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}>
+            LION HEAD CRAFT · 非遗工艺
+          </p>
+          <h2
+            className="text-3xl md:text-4xl font-bold text-balance"
+            style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
+          >
+            扎·扑·写·装
+          </h2>
+          <p className="mt-3 text-base" style={{ fontFamily: 'var(--font-sans)', color: '#7A6055' }}>
+            狮头制作四道工序
+          </p>
+          <div className="flex items-center justify-center gap-4 mt-4">
+            <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, transparent, #C41E24)' }} />
+            <div className="w-1.5 h-1.5 rotate-45" style={{ background: '#C41E24' }} />
+            <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, #C41E24, transparent)' }} />
+          </div>
+        </motion.div>
+
+        {/* LionHeadContent 内容 */}
+        <LionHeadContent />
       </div>
     </section>
   )

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
   { label: '醒狮文脉', href: '#culture' },
+  { label: '狮头制作', href: '#lionhead' },
   { label: '原创短片', href: '#film' },
   { label: '醒狮文创', href: '#products' },
 ]
