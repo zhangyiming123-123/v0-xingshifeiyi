@@ -7,8 +7,6 @@ const navLinks = [
   { label: '醒狮文脉', href: '#culture' },
   { label: '原创短片', href: '#film' },
   { label: '醒狮文创', href: '#products' },
-  { label: '传承人物', href: '#masters' },
-  { label: '活动资讯', href: '#events' },
 ]
 
 export default function Navbar() {

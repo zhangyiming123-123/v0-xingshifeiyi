@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 
 const products = [
   {
@@ -49,7 +49,108 @@ const products = [
   },
 ]
 
-function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
+function Lightbox({
+  product,
+  onClose,
+}: {
+  product: typeof products[0]
+  onClose: () => void
+}) {
+  return (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10"
+      style={{ background: 'rgba(61,43,31,0.88)' }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="relative max-w-3xl w-full"
+        style={{ border: '1px solid rgba(201,169,110,0.5)' }}
+        initial={{ opacity: 0, scale: 0.92, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.94, y: 12 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* 关闭按钮 */}
+        <button
+          onClick={onClose}
+          className="absolute -top-4 -right-4 z-20 w-9 h-9 flex items-center justify-center"
+          style={{ background: '#3D2B1F', border: '1px solid rgba(201,169,110,0.5)' }}
+          aria-label="关闭"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 2l10 10M12 2L2 12" stroke="#C9A96E" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+        </button>
+
+        {/* 角标 */}
+        {[
+          { pos: 'top-0 left-0', d: 'M4 4 L16 4 M4 4 L4 16' },
+          { pos: 'top-0 right-0', d: 'M36 4 L24 4 M36 4 L36 16' },
+          { pos: 'bottom-0 left-0', d: 'M4 36 L16 36 M4 36 L4 24' },
+          { pos: 'bottom-0 right-0', d: 'M36 36 L24 36 M36 36 L36 24' },
+        ].map((c, i) => (
+          <div key={i} className={`absolute ${c.pos} w-10 h-10 pointer-events-none z-10`} aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d={c.d} stroke="#C9A96E" strokeWidth="1.5" opacity="0.7"/>
+            </svg>
+          </div>
+        ))}
+
+        {/* 图片 */}
+        <div className="relative w-full" style={{ background: '#FAF6F0' }}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-auto block"
+            style={{ maxHeight: '72vh', objectFit: 'contain' }}
+          />
+        </div>
+
+        {/* 底部信息条 */}
+        <div
+          className="flex items-center justify-between px-6 py-4"
+          style={{ background: '#3D2B1F', borderTop: '1px solid rgba(201,169,110,0.3)' }}
+        >
+          <div>
+            <p
+              className="text-xs tracking-[0.25em] mb-0.5"
+              style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
+            >
+              {product.category}
+            </p>
+            <h3
+              className="text-base font-bold"
+              style={{ fontFamily: 'var(--font-serif)', color: '#FAF6F0' }}
+            >
+              {product.name}
+            </h3>
+          </div>
+          <span
+            className="px-3 py-1 text-xs tracking-wider"
+            style={{ background: '#C41E24', color: '#FAF6F0', fontFamily: 'var(--font-sans)' }}
+          >
+            {product.tag}
+          </span>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function ProductCard({
+  product,
+  index,
+  onClick,
+}: {
+  product: typeof products[0]
+  index: number
+  onClick: () => void
+}) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
@@ -57,14 +158,12 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
     <motion.div
       ref={ref}
       className="group relative border cursor-pointer overflow-hidden"
-      style={{
-        borderColor: '#C9A96E',
-        background: '#FAF6F0',
-      }}
+      style={{ borderColor: '#C9A96E', background: '#FAF6F0' }}
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.08, duration: 0.5, ease: 'easeOut' }}
       whileHover={{ y: -6, boxShadow: '0 16px 40px rgba(196,30,36,0.18)' }}
+      onClick={onClick}
     >
       {/* hover 红边框 */}
       <motion.div
@@ -73,12 +172,12 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       />
 
       {/* 角标装饰 */}
-      <div className="absolute top-0 left-0 w-10 h-10 z-10 pointer-events-none">
+      <div className="absolute top-0 left-0 w-10 h-10 z-10 pointer-events-none" aria-hidden="true">
         <svg viewBox="0 0 40 40" fill="none">
           <path d="M4 4 L18 4 M4 4 L4 18" stroke="#C9A96E" strokeWidth="1.5" opacity="0.6"/>
         </svg>
       </div>
-      <div className="absolute bottom-0 right-0 w-10 h-10 z-10 pointer-events-none">
+      <div className="absolute bottom-0 right-0 w-10 h-10 z-10 pointer-events-none" aria-hidden="true">
         <svg viewBox="0 0 40 40" fill="none">
           <path d="M36 36 L22 36 M36 36 L36 22" stroke="#C9A96E" strokeWidth="1.5" opacity="0.6"/>
         </svg>
@@ -100,7 +199,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           />
         </motion.div>
 
-        {/* 标签 */}
+        {/* 分类标签 */}
         <div
           className="absolute top-3 right-3 px-2 py-0.5 text-xs tracking-wider z-10"
           style={{ background: '#C41E24', color: '#FAF6F0', fontFamily: 'var(--font-sans)' }}
@@ -108,44 +207,37 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           {product.tag}
         </div>
 
-        {/* hover 遮层 + 按钮 */}
+        {/* hover 放大查看提示 */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          style={{ background: 'rgba(61,43,31,0.5)' }}
+          style={{ background: 'rgba(61,43,31,0.45)' }}
         >
-          <motion.button
-            className="px-6 py-2 text-sm tracking-widest"
-            style={{
-              fontFamily: 'var(--font-serif)',
-              background: '#C41E24',
-              color: '#FAF6F0',
-            }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
+          <div
+            className="w-12 h-12 flex items-center justify-center"
+            style={{ border: '1px solid rgba(201,169,110,0.8)', background: 'rgba(61,43,31,0.6)' }}
           >
-            立即购买
-          </motion.button>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35M11 8v6M8 11h6"/>
+            </svg>
+          </div>
         </motion.div>
       </div>
 
       {/* 产品信息 */}
       <div className="px-4 py-4">
-        <div>
-          <p
-            className="text-xs tracking-wider mb-1"
-            style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
-          >
-            {product.category}
-          </p>
-          <h3
-            className="text-base font-bold leading-tight"
-            style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
-          >
-            {product.name}
-          </h3>
-        </div>
-
-        {/* 金线分隔 */}
+        <p
+          className="text-xs tracking-wider mb-1"
+          style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
+        >
+          {product.category}
+        </p>
+        <h3
+          className="text-base font-bold leading-tight"
+          style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
+        >
+          {product.name}
+        </h3>
         <div
           className="mt-3 h-px"
           style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }}
@@ -158,6 +250,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
 export default function ProductsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const inView = useInView(sectionRef, { once: true, margin: '-60px' })
+  const [lightboxProduct, setLightboxProduct] = useState<typeof products[0] | null>(null)
 
   return (
     <section
@@ -174,8 +267,7 @@ export default function ProductsSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            {/* 祥云装饰 */}
-            <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
+            <svg width="48" height="24" viewBox="0 0 48 24" fill="none" aria-hidden="true">
               <path d="M2 18 Q6 6 12 10 Q8 2 16 4 Q14 -1 22 2 Q22 -2 28 2 Q26 -1 32 4 Q40 2 38 10 Q44 6 46 18" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
             </svg>
             <h2
@@ -184,7 +276,7 @@ export default function ProductsSection() {
             >
               醒狮文创
             </h2>
-            <svg width="48" height="24" viewBox="0 0 48 24" fill="none" style={{ transform: 'scaleX(-1)' }}>
+            <svg width="48" height="24" viewBox="0 0 48 24" fill="none" style={{ transform: 'scaleX(-1)' }} aria-hidden="true">
               <path d="M2 18 Q6 6 12 10 Q8 2 16 4 Q14 -1 22 2 Q22 -2 28 2 Q26 -1 32 4 Q40 2 38 10 Q44 6 46 18" stroke="#C9A96E" strokeWidth="1" fill="none" strokeLinecap="round"/>
             </svg>
           </motion.div>
@@ -208,37 +300,25 @@ export default function ProductsSection() {
         {/* 3×2 产品网格 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={i}
+              onClick={() => setLightboxProduct(product)}
+            />
           ))}
         </div>
-
-        {/* 查看更多 */}
-        <motion.div
-          className="flex justify-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.5 }}
-        >
-          <motion.button
-            className="px-12 py-3 text-sm tracking-widest border"
-            style={{
-              fontFamily: 'var(--font-serif)',
-              color: '#3D2B1F',
-              borderColor: '#C9A96E',
-            }}
-            whileHover={{
-              background: '#C41E24',
-              borderColor: '#C41E24',
-              color: '#FAF6F0',
-              y: -2,
-            }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-          >
-            浏览全部文创
-          </motion.button>
-        </motion.div>
       </div>
+
+      {/* 灯箱 */}
+      <AnimatePresence>
+        {lightboxProduct && (
+          <Lightbox
+            product={lightboxProduct}
+            onClose={() => setLightboxProduct(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   )
 }

@@ -6,7 +6,7 @@ import { motion, useInView } from 'framer-motion'
 const footerLinks = [
   {
     title: '文化板块',
-    links: ['醒狮简史', '技法解析', '传承人物', '非遗故事'],
+    links: ['醒狮简史', '技法解析', '非遗故事'],
   },
   {
     title: '影像资料',
@@ -14,7 +14,7 @@ const footerLinks = [
   },
   {
     title: '互动参与',
-    links: ['醒狮文创', '活动资讯', '志愿者招募', '捐助支持'],
+    links: ['醒狮文创', '志愿者招募', '捐助支持'],
   },
 ]
 
