@@ -210,6 +210,41 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 区块过渡视差层性能优化 */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* 区块入场动画不裁剪子元素 */
+main > * {
+  isolation: isolate;
+}
+
+/* 斜切分隔符不被父级溢出裁剪 */
+.section-divider-wrap {
+  overflow: visible;
+  position: relative;
+  z-index: 5;
+}
+
+/* 过渡区块交叠层级 */
+main > section,
+main > div {
+  position: relative;
+}
+
+/* 区块进入动画统一曲线 */
+@keyframes section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* 隐藏滚动条 */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

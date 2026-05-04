@@ -297,17 +297,29 @@ export default function ProductsSection() {
           />
         </div>
 
-        {/* 3×2 产品网格 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 3×2 产品网格 — 交错入场 */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } } }}
+        >
           {products.map((product, i) => (
-            <ProductCard
+            <motion.div
               key={product.id}
-              product={product}
-              index={i}
-              onClick={() => setLightboxProduct(product)}
-            />
+              variants={{
+                hidden: { opacity: 0, y: 40, scale: 0.95 },
+                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+              }}
+            >
+              <ProductCard
+                product={product}
+                index={i}
+                onClick={() => setLightboxProduct(product)}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* 灯箱 */}
