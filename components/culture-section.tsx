@@ -64,11 +64,11 @@ const tabContent: Record<string, { title: string; body: string; details: string[
     imageAlt: '岭南醒狮在传统祠堂前表演，地面铺满爆竹碎屑，烟雾弥漫',
   },
   origin: {
-    title: '醒狮的起源传说',
-    body: '相传古时岭南一带常遭年兽侵扰，乡民束手无策。一日，神人托梦，授以彩狮之形，并配以锣鼓之声以驱邪。自此民间仿制彩狮，逢年过节出狮祈福。另有一说源于北方舞狮传入后，与岭南武术及民俗文化相结合，逐步演变出独特的"南狮"面貌。',
-    details: ['驱邪迎祥的民俗信仰', '南北狮文化交融', '本土武术元素融入', '珠江流域文化孕育'],
-    image: '/images/lion-history-2.jpg',
-    imageAlt: '醒狮正面特写，红色毛绒狮头与漩涡眼纹，背景为岭南古建筑',
+    title: '源流演变：从中原到岭南',
+    body: '岭南醒狮的起源是一个层层叠加的过程：发端于唐代宫廷，壮大于明代佛山，并在近代被赋予唤醒民族精神的深刻内涵。',
+    details: ['唐代太平乐南传', '明代佛山民俗成型', '清代狮武合一融合', '近代民族精神赋名'],
+    image: '/images/lion-origin.jpg',
+    imageAlt: '金色与红色醒狮在岭南古建筑前共同表演，色彩热烈，气氛浓郁',
   },
   status: {
     title: '非遗保护与文化地位',
@@ -172,6 +172,143 @@ function CloudDecor({ flip = false }: { flip?: boolean }) {
         strokeLinecap="round"
       />
     </svg>
+  )
+}
+
+const originBlocks = [
+  {
+    icon: '源',
+    heading: '源流演变：从中原到岭南',
+    items: [
+      { label: '滥觞于宫廷', body: '最早的源头可追溯到唐代宫廷的《太平乐》（又称《五方狮子舞》），是一种规模宏大、妆造华丽的宫廷庆典乐舞。' },
+      { label: '南传与形成', body: '五代十国时期，随着中原移民大量南迁，这种宫廷乐舞也传入岭南，与当地文化融合，逐渐世俗化并扎根下来。' },
+      { label: '狮武合一', body: '到了清代，因官方"禁教抑武"，民间习武群体将南派武术融入舞狮，形成"狮武合一"的传统，使醒狮的动作充满力量与功架。' },
+    ],
+  },
+  {
+    icon: '传',
+    heading: '民间传说：明代佛山驱"年兽"',
+    items: [
+      { label: '年兽为祸', body: '明朝初年，广东佛山一带出现了一只名为"年兽"（或"连兽"）的独角怪兽，时常糟蹋庄稼，令百姓苦不堪言。' },
+      { label: '扎狮驱怪', body: '为驱赶怪兽，乡民们用竹篾和彩布扎成凶猛的狮头狮身，并在周边敲锣打鼓，成功将"年兽"吓跑。' },
+      { label: '沿习成俗', body: '此后，人们便相沿成习，每逢喜庆佳节便舞狮以驱邪纳吉。这个传说至今仍在民间流传，解释了岭南醒狮的民俗由来。' },
+    ],
+  },
+  {
+    icon: '醒',
+    heading: '点睛之笔：从"瑞狮"到"醒狮"',
+    items: [
+      { label: '借古称"瑞"', body: '在很长一段时间里，南方的狮子舞因其吉祥寓意而被称为"瑞狮"。' },
+      { label: '一字之改', body: '到了清末民初，民族危机深重的年代，因"瑞"在粤语中与"睡"谐音，知识分子与革命宣传家将"瑞狮"改称"醒狮"，以唤醒国人精神。这一字之改，颠覆了传统，赋予了这门艺术全新的民族内涵。' },
+    ],
+  },
+]
+
+function OriginContent() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+
+  return (
+    <div ref={ref} className="mt-10 space-y-10">
+      {/* 装饰分隔线 */}
+      <motion.div
+        className="flex items-center gap-4"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, #C9A96E)' }} />
+        <span className="text-xs tracking-[0.4em] px-4" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>
+          起源详解
+        </span>
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #C9A96E, transparent)' }} />
+      </motion.div>
+
+      {originBlocks.map((block, bi) => (
+        <motion.div
+          key={bi}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.1 + bi * 0.15, duration: 0.6, ease: 'easeOut' }}
+          className="relative"
+        >
+          {/* 标题行 */}
+          <div className="flex items-center gap-3 mb-5">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
+              style={{ background: '#C41E24', color: '#FAF6F0', fontFamily: 'var(--font-serif)' }}
+            >
+              {block.icon}
+            </div>
+            <h4
+              className="text-base font-bold"
+              style={{ fontFamily: 'var(--font-serif)', color: '#3D2B1F' }}
+            >
+              {block.heading}
+            </h4>
+          </div>
+
+          {/* 条目列表 */}
+          <div className="pl-11 space-y-5">
+            {block.items.map((item, ii) => (
+              <motion.div
+                key={ii}
+                className="flex gap-3 group"
+                initial={{ opacity: 0, x: -12 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.2 + bi * 0.15 + ii * 0.08, duration: 0.5 }}
+              >
+                {/* 左侧竖线 + 圆点 */}
+                <div className="flex flex-col items-center flex-shrink-0 pt-1">
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#C9A96E' }} />
+                  {ii < block.items.length - 1 && (
+                    <div className="w-px flex-1 mt-1" style={{ background: '#C9A96E40', minHeight: '28px' }} />
+                  )}
+                </div>
+                <div className="flex-1 pb-1">
+                  <span
+                    className="text-sm font-bold mr-2"
+                    style={{ fontFamily: 'var(--font-serif)', color: '#C41E24' }}
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.9' }}
+                  >
+                    {item.body}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* 块间分隔 */}
+          {bi < originBlocks.length - 1 && (
+            <div
+              className="mt-8 h-px"
+              style={{ background: 'linear-gradient(90deg, #C9A96E30, #C9A96E60, #C9A96E30)' }}
+            />
+          )}
+        </motion.div>
+      ))}
+
+      {/* 结语 */}
+      <motion.div
+        className="p-5 border-l-2 mt-4"
+        style={{ borderColor: '#C41E24', background: 'rgba(196,30,36,0.04)' }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.7, duration: 0.5 }}
+      >
+        <p
+          className="text-sm italic"
+          style={{ fontFamily: 'var(--font-serif)', color: '#5A4035', lineHeight: '2' }}
+        >
+          因此，岭南醒狮的"起源"是一个层层叠加的过程：它<strong style={{ color: '#C41E24' }}>发端于唐代宫廷</strong>，<strong style={{ color: '#C41E24' }}>壮大于明代佛山</strong>，并在近代被赋予<strong style={{ color: '#C41E24' }}>唤醒民族精神</strong>的深刻内涵。
+        </p>
+      </motion.div>
+    </div>
   )
 }
 
@@ -509,6 +646,21 @@ export default function CultureSection() {
               style={{ overflow: 'hidden' }}
             >
               <HistoryTimeline />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* 起源详解 — 仅在起源标签显示 */}
+        <AnimatePresence>
+          {activeTab === 'origin' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              style={{ overflow: 'hidden' }}
+            >
+              <OriginContent />
             </motion.div>
           )}
         </AnimatePresence>
