@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 const tabs = [
   { id: 'history', label: '简史' },
@@ -1116,9 +1117,25 @@ export default function CultureSection() {
                     transition={{ delay: i * 0.08 }}
                   >
                     <div className="w-1 h-4 flex-shrink-0" style={{ background: '#C41E24' }} />
-                    <span className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: '#5A4035' }}>
-                      {detail}
-                    </span>
+                    <Link
+                      href={`/culture/${activeTab}?item=${i}`}
+                      className="text-sm transition-colors duration-200 group/link flex items-center gap-1"
+                      style={{ fontFamily: 'var(--font-sans)', color: '#5A4035' }}
+                    >
+                      <span className="group-hover/link:underline group-hover/link:decoration-[#C41E24] underline-offset-2">
+                        {detail}
+                      </span>
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        className="opacity-0 group-hover/link:opacity-100 transition-opacity flex-shrink-0"
+                        aria-hidden="true"
+                      >
+                        <path d="M2 8 L8 2 M4 2 L8 2 L8 6" stroke="#C41E24" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
