@@ -205,187 +205,121 @@ function InteractiveLion({
         transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
       />
 
-      {/* 主狮头 SVG — 3D 透视跟随 */}
+      {/* 主狮头 — 真实图片 + 3D 透视跟随 */}
       <motion.div
+        className="relative"
         style={{
           rotateY: smoothRotY,
           rotateX: smoothRotX,
-          transformPerspective: 800,
+          transformPerspective: 900,
           transformStyle: 'preserve-3d',
           cursor: 'pointer',
+          width: 260,
+          height: 300,
         }}
-        animate={isClicked ? { scale: [1, 1.12, 0.96, 1.04, 1] } : {}}
+        animate={isClicked ? { scale: [1, 1.1, 0.95, 1.05, 1] } : {}}
         transition={{ duration: 0.45, ease: 'easeInOut' }}
         onClick={handleClick}
         onHoverStart={handleHover}
-        whileHover={{ scale: 1.04 }}
+        whileHover={{ scale: 1.05 }}
         aria-label="互动醒狮，点击听锣鼓"
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === 'Enter' && handleClick()}
       >
-        <svg
-          width="220"
-          height="240"
-          viewBox="0 0 220 240"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          {/* 顶部铜铃 */}
-          <motion.g
-            animate={{ rotate: isClicked ? [0, -12, 12, -6, 0] : [0, 3, -3, 0] }}
-            style={{ originX: '110px', originY: '18px' }}
-            transition={isClicked
-              ? { duration: 0.4, ease: 'easeInOut' }
-              : { duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }
-            }
-          >
-            <ellipse cx="110" cy="14" rx="14" ry="10" fill="#C9A96E" />
-            <ellipse cx="110" cy="14" rx="10" ry="7" fill="#D4B97E" />
-            <circle cx="110" cy="14" r="4" fill="#C41E24" />
-            <line x1="110" y1="4" x2="110" y2="0" stroke="#C9A96E" strokeWidth="2" />
-            <path d="M96 22 Q110 18 124 22" stroke="#C9A96E" strokeWidth="1" fill="none"/>
-          </motion.g>
+        {/* 底部光晕 */}
+        <motion.div
+          className="absolute -inset-6 rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(196,30,36,0.18) 0%, transparent 70%)',
+          }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+        />
 
-          {/* 头顶绒球 */}
-          <motion.g
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-          >
-            <circle cx="110" cy="34" r="18" fill="#C41E24" opacity="0.9"/>
-            <circle cx="110" cy="34" r="12" fill="#E03040" />
-            <circle cx="104" cy="30" r="4" fill="#F05060" opacity="0.6" />
-          </motion.g>
+        {/* 狮头图片 */}
+        <motion.img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260429064429_5263_485-4UGGvKM4vixZDdxhyyR0bq7xMdjAd2.png"
+          alt="岭南醒狮插画——黑色张飞狮，额顶蓝黄花朵，三只漩涡大眼，大红嘴"
+          className="w-full h-full object-contain relative z-10"
+          animate={isClicked ? {
+            filter: ['brightness(1)', 'brightness(1.5)', 'brightness(1)'],
+          } : { filter: 'brightness(1)' }}
+          transition={{ duration: 0.3 }}
+          draggable={false}
+        />
 
-          {/* 耳朵 */}
-          <ellipse cx="58" cy="72" rx="18" ry="22" fill="#C41E24" />
-          <ellipse cx="58" cy="72" rx="11" ry="14" fill="#E8C87A" />
-          <ellipse cx="162" cy="72" rx="18" ry="22" fill="#C41E24" />
-          <ellipse cx="162" cy="72" rx="11" ry="14" fill="#E8C87A" />
+        {/* 左眼帘遮罩 — 眨眼动画，精确定位在图片左眼区域 */}
+        <motion.div
+          className="absolute z-20 rounded-full"
+          style={{
+            left: '22%',
+            top: '40%',
+            width: '26%',
+            height: '18%',
+            background: '#1A0A04',
+            transformOrigin: 'top center',
+          }}
+          animate={{ scaleY: isBlinking ? [0, 1, 1, 0] : 0 }}
+          transition={{ duration: 0.28, ease: 'easeInOut', times: [0, 0.35, 0.65, 1] }}
+        />
+        {/* 右眼帘遮罩 */}
+        <motion.div
+          className="absolute z-20 rounded-full"
+          style={{
+            right: '18%',
+            top: '40%',
+            width: '26%',
+            height: '18%',
+            background: '#1A0A04',
+            transformOrigin: 'top center',
+          }}
+          animate={{ scaleY: isBlinking ? [0, 1, 1, 0] : 0 }}
+          transition={{ duration: 0.28, ease: 'easeInOut', times: [0, 0.35, 0.65, 1] }}
+        />
 
-          {/* 脸型主体 */}
-          <ellipse cx="110" cy="130" rx="76" ry="80" fill="#FAF6F0" />
-          <ellipse cx="110" cy="130" rx="76" ry="80" fill="url(#faceGrad)" />
+        {/* 眼珠高光跟随 — 左眼 */}
+        <motion.div
+          className="absolute z-20 rounded-full pointer-events-none"
+          style={{
+            left: '28%',
+            top: '44%',
+            width: '8%',
+            height: '6%',
+            background: 'rgba(255,255,255,0.55)',
+            x: smoothEyeX,
+            y: smoothEyeY,
+            filter: 'blur(1px)',
+          }}
+        />
+        {/* 眼珠高光跟随 — 右眼 */}
+        <motion.div
+          className="absolute z-20 rounded-full pointer-events-none"
+          style={{
+            right: '24%',
+            top: '44%',
+            width: '8%',
+            height: '6%',
+            background: 'rgba(255,255,255,0.55)',
+            x: smoothEyeX,
+            y: smoothEyeY,
+            filter: 'blur(1px)',
+          }}
+        />
 
-          {/* 额头纹样 */}
-          <path d="M75 78 Q90 64 110 70 Q130 64 145 78" stroke="#C41E24" strokeWidth="2" fill="none" strokeLinecap="round"/>
-          <path d="M85 84 Q98 76 110 80 Q122 76 135 84" stroke="#C9A96E" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-          {/* 额头铜镜 */}
-          <circle cx="110" cy="88" r="12" fill="#C9A96E" />
-          <circle cx="110" cy="88" r="8" fill="#D4B97E" />
-          <circle cx="110" cy="88" r="4" fill="#FAF6F0" opacity="0.8" />
-          <circle cx="108" cy="86" r="1.5" fill="white" opacity="0.6" />
-
-          {/* 眉毛 */}
-          <path d="M68 108 Q84 96 96 104" stroke="#3D2B1F" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-          <path d="M124 104 Q136 96 152 108" stroke="#3D2B1F" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-
-          {/* 眼白 */}
-          <ellipse cx="84" cy="126" rx="22" ry="20" fill="white" />
-          <ellipse cx="136" cy="126" rx="22" ry="20" fill="white" />
-          {/* 眼眶描边 */}
-          <ellipse cx="84" cy="126" rx="22" ry="20" stroke="#3D2B1F" strokeWidth="2" fill="none"/>
-          <ellipse cx="136" cy="126" rx="22" ry="20" stroke="#3D2B1F" strokeWidth="2" fill="none"/>
-
-          {/* 眼珠 — 跟随鼠标 */}
-          <motion.g style={{ x: smoothEyeX, y: smoothEyeY }}>
-            <circle cx="84" cy="126" r="13" fill="#2C2010" />
-            <circle cx="84" cy="126" r="8" fill="#1A1408" />
-            <circle cx="80" cy="122" r="4" fill="white" opacity="0.9" />
-            <circle cx="86" cy="128" r="1.5" fill="white" opacity="0.4" />
-          </motion.g>
-          <motion.g style={{ x: smoothEyeX, y: smoothEyeY }}>
-            <circle cx="136" cy="126" r="13" fill="#2C2010" />
-            <circle cx="136" cy="126" r="8" fill="#1A1408" />
-            <circle cx="132" cy="122" r="4" fill="white" opacity="0.9" />
-            <circle cx="138" cy="128" r="1.5" fill="white" opacity="0.4" />
-          </motion.g>
-
-          {/* 眼帘 — 眨眼遮盖 */}
-          <motion.ellipse
-            cx="84" cy="116"
-            rx="22" ry="20"
-            fill="#C41E24"
-            animate={{ scaleY: isBlinking ? [0, 1, 1, 0] : 0 }}
-            style={{ originY: '116px' }}
-            transition={{ duration: 0.26, ease: 'easeInOut', times: [0, 0.35, 0.65, 1] }}
-          />
-          <motion.ellipse
-            cx="136" cy="116"
-            rx="22" ry="20"
-            fill="#C41E24"
-            animate={{ scaleY: isBlinking ? [0, 1, 1, 0] : 0 }}
-            style={{ originY: '116px' }}
-            transition={{ duration: 0.26, ease: 'easeInOut', times: [0, 0.35, 0.65, 1] }}
-          />
-
-          {/* 鼻子 */}
-          <ellipse cx="110" cy="152" rx="14" ry="10" fill="#E87A7A" />
-          <ellipse cx="110" cy="152" rx="9" ry="6" fill="#C41E24" />
-          <circle cx="107" cy="150" r="2.5" fill="#FF9090" opacity="0.6" />
-
-          {/* 嘴巴 */}
-          <path d="M78 166 Q94 178 110 180 Q126 178 142 166" stroke="#3D2B1F" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-
-          {/* 胡须 */}
-          {[
-            [36, 155, 72, 158], [32, 164, 70, 164], [36, 173, 72, 170],
-            [184, 155, 148, 158], [188, 164, 150, 164], [184, 173, 148, 170],
-          ].map(([x1, y1, x2, y2], i) => (
-            <motion.line
-              key={i}
-              x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke="#C9A96E"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              animate={{ x1: [x1, x1 + (i < 3 ? -2 : 2), x1] }}
-              transition={{ duration: 2 + i * 0.3, repeat: Infinity, ease: 'easeInOut' }}
+        {/* 点击红色闪光 */}
+        <AnimatePresence>
+          {isClicked && (
+            <motion.div
+              className="absolute inset-0 z-30 rounded-full pointer-events-none"
+              style={{ background: 'rgba(196,30,36,0.22)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 0] }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
             />
-          ))}
-
-          {/* 下颌绒毛 */}
-          <motion.path
-            d="M78 190 Q88 210 110 215 Q132 210 142 190"
-            fill="#E8DCC0"
-            stroke="#D4C8A8"
-            strokeWidth="1"
-            animate={{ d: [
-              'M78 190 Q88 210 110 215 Q132 210 142 190',
-              'M76 192 Q86 214 110 218 Q134 214 144 192',
-              'M78 190 Q88 210 110 215 Q132 210 142 190',
-            ]}}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <path d="M88 195 Q110 205 132 195" stroke="#C9A96E" strokeWidth="0.8" fill="none" opacity="0.5"/>
-
-          {/* 脸部流苏色块 */}
-          <motion.g
-            animate={{ y: [0, 2, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-          >
-            {[-28, -14, 0, 14, 28].map((offset, i) => (
-              <rect
-                key={i}
-                x={97 + offset}
-                y="212"
-                width="10"
-                height="16"
-                rx="2"
-                fill={i % 2 === 0 ? '#C41E24' : '#C9A96E'}
-                opacity="0.7"
-              />
-            ))}
-          </motion.g>
-
-          {/* 渐变定义 */}
-          <defs>
-            <radialGradient id="faceGrad" cx="50%" cy="40%" r="60%">
-              <stop offset="0%" stopColor="#FAF6F0" stopOpacity="0" />
-              <stop offset="100%" stopColor="#E8C87A" stopOpacity="0.12" />
-            </radialGradient>
-          </defs>
-        </svg>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* 提示文案 */}
