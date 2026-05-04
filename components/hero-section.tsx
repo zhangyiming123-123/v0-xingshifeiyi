@@ -443,14 +443,14 @@ export default function HeroSection() {
 
       {/* ── 主内容层 ── */}
       <motion.div
-        className="flex-1 flex items-center max-w-7xl mx-auto w-full px-8 md:px-16 pt-28 pb-16 relative"
+        className="flex-1 flex items-center max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-16 pt-24 sm:pt-28 pb-12 relative"
         style={{ opacity: contentOpacity, y: contentY, zIndex: 10 }}
       >
         {/* 左侧文字区 */}
-        <div className="flex flex-col max-w-xl flex-1">
+        <div className="flex flex-col w-full max-w-xl">
           {/* 非遗徽章 */}
           <motion.div
-            className="flex items-center gap-3 mb-10"
+            className="flex items-center gap-2 sm:gap-3 mb-7 sm:mb-10"
             initial={{ opacity: 0, x: -24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -482,7 +482,7 @@ export default function HeroSection() {
                   className="cursor-default select-none block"
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: 'clamp(2.4rem, 5.5vw, 3.8rem)',
+                    fontSize: 'clamp(1.6rem, 5.5vw, 3.8rem)',
                     lineHeight: 1,
                     color: 'rgba(250,246,240,0.6)',
                     letterSpacing: '0.08em',
@@ -501,7 +501,7 @@ export default function HeroSection() {
                 className="cursor-default select-none block"
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(5.5rem, 15vw, 10rem)',
+                  fontSize: 'clamp(4rem, 15vw, 10rem)',
                   lineHeight: 0.88,
                   color: '#C41E24',
                   textShadow: '0 0 80px rgba(196,30,36,0.5), 0 0 30px rgba(196,30,36,0.3), 4px 6px 0 rgba(100,10,10,0.4)',
@@ -522,7 +522,7 @@ export default function HeroSection() {
                 className="cursor-default select-none block"
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(5.5rem, 15vw, 10rem)',
+                  fontSize: 'clamp(4rem, 15vw, 10rem)',
                   lineHeight: 0.88,
                   color: '#FAF6F0',
                   textShadow: '4px 6px 0 rgba(61,43,31,0.6), 0 0 40px rgba(250,246,240,0.08)',
@@ -554,7 +554,7 @@ export default function HeroSection() {
 
           {/* 英文副标题 */}
           <motion.p
-            className="text-[11px] tracking-[0.4em] mb-3"
+            className="hidden sm:block text-[11px] tracking-[0.4em] mb-3"
             style={{ fontFamily: 'var(--font-sans)', color: 'rgba(201,169,110,0.55)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -565,7 +565,7 @@ export default function HeroSection() {
 
           {/* 中文描述 */}
           <motion.p
-            className="text-sm mb-12"
+            className="text-sm mb-8 sm:mb-12"
             style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.45)', lineHeight: '2.1', maxWidth: '32em' }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -577,14 +577,14 @@ export default function HeroSection() {
 
           {/* 按钮组 */}
           <motion.div
-            className="flex items-center gap-5 flex-wrap"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.72, duration: 0.6 }}
           >
             <motion.a
               href="#culture"
-              className="relative px-9 py-3.5 text-sm tracking-[0.2em] overflow-hidden"
+              className="relative w-full sm:w-auto text-center px-9 py-3.5 text-sm tracking-[0.2em] overflow-hidden"
               style={{ fontFamily: 'var(--font-serif)', background: '#C41E24', color: '#FAF6F0' }}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
@@ -601,7 +601,7 @@ export default function HeroSection() {
             </motion.a>
             <motion.a
               href="#film"
-              className="group flex items-center gap-2.5 px-7 py-3.5 text-sm tracking-[0.2em]"
+              className="group w-full sm:w-auto justify-center flex items-center gap-2.5 px-7 py-3.5 text-sm tracking-[0.2em]"
               style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E', border: '1px solid rgba(201,169,110,0.45)' }}
               whileHover={{ borderColor: '#C9A96E', color: '#FAF6F0', backgroundColor: 'rgba(201,169,110,0.08)', scale: 1.03 }}
               transition={{ type: 'spring', stiffness: 350, damping: 22 }}

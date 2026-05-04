@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 pt-14 pb-10 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 pt-10 sm:pt-14 pb-8 sm:pb-10 relative">
 
         {/* 主内容区：品牌 + 三列链接 */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
@@ -183,7 +183,7 @@ export default function Footer() {
           </div>
 
           {/* 三列链接 — 占 6 列 */}
-          <div className="md:col-span-6 grid grid-cols-3 gap-6">
+          <div className="md:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-6">
             {footerCols.map((col, i) => (
               <motion.div
                 key={i}

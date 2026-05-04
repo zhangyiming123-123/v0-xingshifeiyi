@@ -144,7 +144,7 @@ export default function Navbar() {
               <motion.div
                 key="search-input"
                 initial={{ width: 0, opacity: 0 }}
-                animate={{ width: 200, opacity: 1 }}
+                animate={{ width: 'min(200px, 50vw)', opacity: 1 }}
                 exit={{ width: 0, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 className="overflow-hidden"

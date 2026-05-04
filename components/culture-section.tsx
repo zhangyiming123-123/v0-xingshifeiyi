@@ -864,7 +864,7 @@ function LionHeadContent() {
         >
           <p className="text-xs tracking-widest mb-2" style={{ fontFamily: 'var(--font-serif)', color: '#C9A96E' }}>色彩搭配的规律</p>
           <p className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: '#5A4035', lineHeight: '1.9' }}>
-            主色决定角色——狮头的主体颜色决定了其扮演的基本人物和性格底色。大部分狮头无论主色，额顶都会镶嵌<strong style={{ color: '#C41E24' }}>明镜</strong>（代表"照妖镜"或智慧），并配以金色、银色或彩色的绒球、流苏增加华丽感。现代竞技或文创中经常出现粉、紫、靛蓝等非传统色，但文化核心仍以<strong style={{ color: '#C41E24' }}>红、黄、黑、绿、蓝</strong>五大正色为基础。
+            主色决定角色——狮头的主体颜色决定了其扮演的基本人物和性格底色。大部分狮头无论主色，额顶都会镶嵌<strong style={{ color: '#C41E24' }}>明镜</strong>（代表"照妖镜"��智慧），并配以金色、银色或彩色的绒球、流苏增加华丽感。现代竞技或文创中经常出现粉、紫、靛蓝等非传统色，但文化核心仍以<strong style={{ color: '#C41E24' }}>红、黄、黑、绿、蓝</strong>五大正色为基础。
           </p>
           <p className="text-sm mt-3 italic" style={{ fontFamily: 'var(--font-serif)', color: '#7A5A4A' }}>
             选择什么颜色的狮头，就是选择一种"性格"和"气场"。
@@ -1368,7 +1368,7 @@ export default function CultureSection() {
       ref={sectionRef}
       className="py-24 rice-paper cloud-pattern overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <SectionTitle subtitle="The Spirit of Lingnan Lion Dance">醒狮文脉</SectionTitle>
 
         {/* 标签按钮 */}
@@ -1648,7 +1648,7 @@ export function LionHeadSection() {
         扎
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-6">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         {/* 板块标题 */}
         <motion.div
           className="text-center mb-16"

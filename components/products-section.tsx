@@ -258,7 +258,7 @@ export default function ProductsSection() {
       ref={sectionRef}
       className="py-24 rice-paper cloud-pattern overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* 标题 */}
         <div className="flex flex-col items-center gap-3 mb-14">
           <motion.div
