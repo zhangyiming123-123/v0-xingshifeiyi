@@ -5,22 +5,22 @@ import { motion, useInView } from 'framer-motion'
 
 const miniCards = [
   {
-    title: '采青问天',
-    duration: '08:24',
-    desc: '高桩之巅，狮舞翩跹，问天采青仪式全记录',
-    tag: '技法纪录',
+    title: '林醒的归途',
+    duration: '花絮',
+    desc: '拍摄团队跟随主角林醒走进涌口村，记录第一次重返故土的真实心路历程。',
+    tag: '幕后花絮',
   },
   {
-    title: '锣鼓击鸣',
-    duration: '05:16',
-    desc: '铿锵锣鼓，节奏激昂，醒狮音乐的灵魂解析',
-    tag: '音乐探秘',
+    title: '吉光镜下的人心',
+    duration: '花絮',
+    desc: '导演张熠铭讲述"吉光镜"意象的创作灵感，以及光与孤独如何在镜中相遇。',
+    tag: '幕后花絮',
   },
   {
-    title: '狮头工艺',
-    duration: '12:08',
-    desc: '一针一线，匠心传承，传统狮头扎制工艺',
-    tag: '非遗工艺',
+    title: '狮头开眼仪式',
+    duration: '精彩时刻',
+    desc: '影片最高潮：沉寂已久的狮头再度点睛，烟火人间里醒狮文化重新亮起的关键一幕。',
+    tag: '精彩时刻',
   },
 ]
 
@@ -142,20 +142,20 @@ export default function FilmSection() {
                     className="text-xs tracking-widest mb-1 block"
                     style={{ fontFamily: 'var(--font-sans)', color: '#C9A96E' }}
                   >
-                    醒狮纪录片 · 主片
+                    原创短片 · 2026
                   </span>
                   <h3
                     className="text-xl font-bold text-white"
                     style={{ fontFamily: 'var(--font-serif)' }}
                   >
-                    狮舞岭南
+                    醒狮
                   </h3>
                 </div>
                 <span
                   className="text-sm"
                   style={{ fontFamily: 'var(--font-sans)', color: 'rgba(250,246,240,0.6)' }}
                 >
-                  28:46
+                  导演：张熠铭
                 </span>
               </div>
             </div>
@@ -184,13 +184,13 @@ export default function FilmSection() {
                   border: '1px solid rgba(196,30,36,0.4)',
                 }}
               >
-                2024年度非遗纪录
+                2026年度原创短片
               </div>
               <h3
                 className="text-2xl font-bold mb-4 leading-snug"
                 style={{ fontFamily: 'var(--font-serif)', color: '#FAF6F0' }}
               >
-                狮舞岭南
+                醒狮
               </h3>
               <div className="gold-divider mb-4" />
               <p
@@ -201,17 +201,13 @@ export default function FilmSection() {
                   lineHeight: '1.9',
                 }}
               >
-                深入广州、佛山、东莞三地，跟拍岭南醒狮传承人，
-                记录一代狮王从习武入门到登台采青的完整历程，
-                呈现濒临失传的高桩醒狮绝技。
+                在城市里碰壁的年轻人林醒，因爷爷留下的狮馆即将拆迁，重返故乡佛山涌口村。他在尘封的狮头与旧时光里，意外读懂了醒狮扎作背后的温度与力量，并通过吉光镜看见人心深处的孤独与枷锁。在与留守少年小杰的彼此救赎中，林醒以扎狮、舞狮为灯，解开自己与乡邻们心中的郁结，最终让沉寂的醒狮文化，在烟火人间里重新亮起，完成了一场关于传承、治愈与自我觉醒的温柔旅程。
               </p>
 
               {/* 元数据 */}
               {[
-                { label: '导演', value: '陈振华' },
-                { label: '时长', value: '28分46秒' },
-                { label: '制作', value: '非遗影像中心' },
-                { label: '年份', value: '2024' },
+                { label: '导演', value: '张熠铭' },
+                { label: '年份', value: '2026' },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -273,8 +269,11 @@ export default function FilmSection() {
                   className="text-xs px-2 py-0.5 tracking-wider"
                   style={{
                     fontFamily: 'var(--font-sans)',
-                    background: 'rgba(201,169,110,0.15)',
-                    color: '#C9A96E',
+                    background: card.tag === '精彩时刻'
+                      ? 'rgba(196,30,36,0.18)'
+                      : 'rgba(201,169,110,0.15)',
+                    color: card.tag === '精彩时刻' ? '#C41E24' : '#C9A96E',
+                    border: `1px solid ${card.tag === '精彩时刻' ? 'rgba(196,30,36,0.35)' : 'rgba(201,169,110,0.25)'}`,
                   }}
                 >
                   {card.tag}
