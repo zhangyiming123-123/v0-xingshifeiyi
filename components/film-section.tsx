@@ -69,7 +69,7 @@ export default function FilmSection() {
               <div className="absolute inset-0">
                 <img
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/09740d94a9c2b3d483796bd4c5f830b2-Enz4p74OpqdxYzBtHg6j062NslEEMH.jpg"
-                  alt="《狮承吉光》电影封面——成人与孩子身着红金醒狮服装并肩而立，背景岭南古建筑，右侧金色书法大字"狮承吉光""
+                  alt="《狮承吉光》电影封面——成人与孩子身着红金醒狮服装并肩而立，背景岭南古建筑，右侧金色书法大字狮承吉光"
                   className="w-full h-full object-cover object-center"
                 />
                 {/* 底部渐变遮罩，确保字幕条可读 */}
