@@ -4,15 +4,17 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const notoSerifSC = Noto_Serif_SC({
-  subsets: ['latin'],
+  subsets: ['latin', 'chinese-simplified'],
   weight: ['400', '500', '700', '900'],
   variable: '--font-serif',
+  display: 'swap',
 })
 
 const notoSansSC = Noto_Sans_SC({
-  subsets: ['latin'],
+  subsets: ['latin', 'chinese-simplified'],
   weight: ['300', '400', '500', '700'],
   variable: '--font-sans',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
