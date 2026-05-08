@@ -64,35 +64,19 @@ export default function FilmSection() {
               />
             )}
 
-            {/* 封面占位 — 未播放时显示 */}
+            {/* 封面图 — 未播放时显示 */}
             {!playing && (
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(135deg, #1A1008 0%, #2C1810 40%, #2C5F7C 100%)',
-                }}
-              >
-                <div className="absolute inset-0 cloud-pattern opacity-10" />
-                <svg
-                  className="absolute inset-0 w-full h-full"
-                  viewBox="0 0 800 340"
-                  fill="none"
-                  preserveAspectRatio="xMidYMid slice"
-                  aria-hidden="true"
-                >
-                  <circle cx="400" cy="170" r="140" stroke="#C9A96E" strokeWidth="0.6" opacity="0.3"/>
-                  <circle cx="400" cy="170" r="100" stroke="#C41E24" strokeWidth="0.5" opacity="0.2"/>
-                  <path d="M100 200 Q250 80 400 170 Q550 260 700 140" stroke="#C9A96E" strokeWidth="1" fill="none" opacity="0.4"/>
-                  <path d="M80 230 Q230 110 400 200 Q570 290 720 170" stroke="#C41E24" strokeWidth="0.8" fill="none" opacity="0.3"/>
-                  <path d="M30 30 L60 30 M30 30 L30 60" stroke="#C9A96E" strokeWidth="1.5" opacity="0.5"/>
-                  <path d="M770 30 L740 30 M770 30 L770 60" stroke="#C9A96E" strokeWidth="1.5" opacity="0.5"/>
-                  <path d="M30 310 L60 310 M30 310 L30 280" stroke="#C9A96E" strokeWidth="1.5" opacity="0.5"/>
-                  <path d="M770 310 L740 310 M770 310 L770 280" stroke="#C9A96E" strokeWidth="1.5" opacity="0.5"/>
-                </svg>
+              <div className="absolute inset-0">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/09740d94a9c2b3d483796bd4c5f830b2-Enz4p74OpqdxYzBtHg6j062NslEEMH.jpg"
+                  alt="《狮承吉光》电影封面——成人与孩子身着红金醒狮服装并肩而立，背景岭南古建筑，右侧金色书法大字"狮承吉光""
+                  className="w-full h-full object-cover object-center"
+                />
+                {/* 底部渐变遮罩，确保字幕条可读 */}
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: 'linear-gradient(to right, rgba(61,43,31,0.4) 0%, transparent 40%, transparent 60%, rgba(44,95,124,0.3) 100%)',
+                    background: 'linear-gradient(to top, rgba(20,10,4,0.75) 0%, transparent 45%)',
                   }}
                 />
               </div>
